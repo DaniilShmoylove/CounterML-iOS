@@ -1,5 +1,5 @@
 <p align="center">
-   <a href="url"><img src="https://i.postimg.cc/TwD5yjhn/image-2.png" height="auto" width="200" style="border-radius:50"></a>
+   <a href="url"><img src="https://i.postimg.cc/TPcHzmTq/image-2.png" height="auto" width="200" style="border-radius:50"></a>
   <h1 align="center">CounterML-iOS</h1>
 </p>
 
