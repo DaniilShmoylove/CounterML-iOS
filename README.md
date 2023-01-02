@@ -14,3 +14,5 @@
     <img alt="" src="https://img.shields.io/badge/Swift%205.7-red.svg?style=for-the-badge&logo=AppIcon">
   </a>
 </p>
+
+**A mobile app that implements state-of-the-art machine learning integration. The main function of the application is to determine the contents of the plate, calories and other data based on the focus of the camera on the plate. [Code example.](https://pages.github.com/)**
