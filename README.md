@@ -15,4 +15,17 @@
   </a>
 </p>
 
-A mobile app that implements state-of-the-art machine learning integration. The main function of the application is to determine the contents of the plate, calories and other data based on the focus of the camera on the plate. [Code example.](https://pages.github.com/)
+<p align="center">
+    <img alt="" src="https://img.shields.io/badge/CoreML-4867F6.svg?style=for-the-badge&logo=AppIcon">
+  </a>
+    <img alt="" src="https://img.shields.io/badge/Vision-4867F6.svg?style=for-the-badge&logo=AppIcon">
+  </a>
+   <img alt="" src="https://img.shields.io/badge/Firestore-4867F6.svg?style=for-the-badge&logo=AppIcon">
+  </a>
+   <img alt="" src="https://img.shields.io/badge/Authentication-4867F6.svg?style=for-the-badge&logo=AppIcon">
+  </a>
+    <img alt="" src="https://img.shields.io/badge/MacOS%20integration-4867F6.svg?style=for-the-badge&logo=AppIcon">
+  </a>
+</p>
+
+A mobile app that implements state-of-the-art machine learning integration. The main function of the application is to determine the contents of the plate, calories and other data based on the focus of the camera on the plate. 
