@@ -1,5 +1,5 @@
 <p align="center">
-   <a href="url"><img src="https://i.postimg.cc/dtNM0XkZ/image-5.png" height="auto" width="144" style="border-radius:50"></a>
+   <a href="url"><img src="https://i.postimg.cc/zDQgnC1B/image-6.png" height="auto" width="144" style="border-radius:50"></a>
   <h1 align="center">CounterML-iOS</h1>
 </p>
 
@@ -15,4 +15,4 @@
   </a>
 </p>
 
-**A mobile app that implements state-of-the-art machine learning integration. The main function of the application is to determine the contents of the plate, calories and other data based on the focus of the camera on the plate. [Code example.](https://pages.github.com/)**
+A mobile app that implements state-of-the-art machine learning integration. The main function of the application is to determine the contents of the plate, calories and other data based on the focus of the camera on the plate. [Code example.](https://pages.github.com/)
