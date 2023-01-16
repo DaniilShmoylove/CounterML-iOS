@@ -7,6 +7,8 @@
   <a aria-label="Working snippets" target="_blank">
     <img alt="" src="https://img.shields.io/badge/iOS-16.0+-black.svg?style=for-the-badge&logo=AppIcon">
   </a>
+    <img alt="" src="https://img.shields.io/badge/MacOS-13.0+-black.svg?style=for-the-badge&logo=AppIcon">
+  </a>
   <a aria-label="Working snippets" target="_blank">
     <img alt="" src="https://img.shields.io/badge/Xcode-14.0+-black.svg?style=for-the-badge&logo=AppIcon">
   </a>
