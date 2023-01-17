@@ -7,19 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A5A144972974BAF4006561A8 /* CounterML_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A144962974BAF4006561A8 /* CounterML_iOSApp.swift */; };
+		A5A144972974BAF4006561A8 /* CounterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A144962974BAF4006561A8 /* CounterApp.swift */; };
 		A5A144992974BAF4006561A8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A144982974BAF4006561A8 /* ContentView.swift */; };
 		A5A1449B2974BAF6006561A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5A1449A2974BAF6006561A8 /* Assets.xcassets */; };
 		A5A1449F2974BAF6006561A8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5A1449E2974BAF6006561A8 /* Preview Assets.xcassets */; };
+		A5C591702975E6CB00D422B6 /* CounterMLKit in Frameworks */ = {isa = PBXBuildFile; productRef = A5C5916F2975E6CB00D422B6 /* CounterMLKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A5A144932974BAF4006561A8 /* CounterML-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CounterML-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A5A144962974BAF4006561A8 /* CounterML_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterML_iOSApp.swift; sourceTree = "<group>"; };
+		A5A144962974BAF4006561A8 /* CounterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterApp.swift; sourceTree = "<group>"; };
 		A5A144982974BAF4006561A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A5A1449A2974BAF6006561A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5A1449C2974BAF6006561A8 /* CounterML_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CounterML_iOS.entitlements; sourceTree = "<group>"; };
 		A5A1449E2974BAF6006561A8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A5C5916D2975E6BD00D422B6 /* CounterMLKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = CounterMLKit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +29,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5C591702975E6CB00D422B6 /* CounterMLKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -36,8 +39,10 @@
 		A5A1448A2974BAF4006561A8 = {
 			isa = PBXGroup;
 			children = (
+				A5C5916D2975E6BD00D422B6 /* CounterMLKit */,
 				A5A144952974BAF4006561A8 /* CounterML-iOS */,
 				A5A144942974BAF4006561A8 /* Products */,
+				A5C5916E2975E6CB00D422B6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,7 +57,7 @@
 		A5A144952974BAF4006561A8 /* CounterML-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				A5A144962974BAF4006561A8 /* CounterML_iOSApp.swift */,
+				A5A144962974BAF4006561A8 /* CounterApp.swift */,
 				A5A144982974BAF4006561A8 /* ContentView.swift */,
 				A5A1449A2974BAF6006561A8 /* Assets.xcassets */,
 				A5A1449C2974BAF6006561A8 /* CounterML_iOS.entitlements */,
@@ -67,6 +72,13 @@
 				A5A1449E2974BAF6006561A8 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A5C5916E2975E6CB00D422B6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -85,6 +97,9 @@
 			dependencies = (
 			);
 			name = "CounterML-iOS";
+			packageProductDependencies = (
+				A5C5916F2975E6CB00D422B6 /* CounterMLKit */,
+			);
 			productName = "CounterML-iOS";
 			productReference = A5A144932974BAF4006561A8 /* CounterML-iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -140,7 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5A144992974BAF4006561A8 /* ContentView.swift in Sources */,
-				A5A144972974BAF4006561A8 /* CounterML_iOSApp.swift in Sources */,
+				A5A144972974BAF4006561A8 /* CounterApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +373,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A5C5916F2975E6CB00D422B6 /* CounterMLKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CounterMLKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A5A1448B2974BAF4006561A8 /* Project object */;
 }
