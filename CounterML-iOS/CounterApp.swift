@@ -15,7 +15,7 @@ import CounterMLKit
 struct CounterApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Text("Hello!")
         }
     }
 }
