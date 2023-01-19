@@ -15,9 +15,21 @@ let package = Package(
             name: "CounterMLKit",
             targets: [
                 "CounterMLKit",
+                "Core",
                 "CoreUI",
+                "Services",
+                "Resources",
             ]),
+        .library(name: "Core", targets: ["Core"]),
         .library(name: "CoreUI", targets: ["CoreUI"]),
+        .library(
+            name: "Services",
+            targets: [
+                "Services",
+                "Resources",
+                "Core",
+            ]),
+        .library(name: "Resources", targets: ["Resources"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -29,7 +41,10 @@ let package = Package(
         .target(
             name: "CounterMLKit",
             dependencies: []),
+        .target(name: "Core"),
         .target(name: "CoreUI"),
+        .target(name: "Services"),
+        .target(name: "Resources"),
         .testTarget(
             name: "CounterMLKitTests",
             dependencies: ["CounterMLKit"]),

@@ -49,12 +49,10 @@ private extension DismissButtonStyle {
 #if DEBUG
 struct DismissButtonStyle_Previews: PreviewProvider {
     static var previews: some View {
-        Button { } label: {
-            Text("Button")
-        }
-        .padding()
-        .background(.red)
-        .buttonStyle(DismissButtonStyle())
+        Button("") { }
+            .padding()
+            .buttonStyle(.dismiss)
+            .previewLayout(.sizeThatFits)
     }
 }
 #endif
