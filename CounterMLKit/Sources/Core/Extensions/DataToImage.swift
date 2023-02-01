@@ -16,14 +16,14 @@ public extension Image {
         /// Return as `NSImage` type
         
 #if canImport(AppKit)
-        let songArtwork: NSImage = NSImage(data: value) ?? NSImage()
-        return Image(nsImage: songArtwork)
+        let nsImage: NSImage = NSImage(data: value) ?? NSImage()
+        return Image(nsImage: nsImage)
         
         /// Return as `UIImage` type
         
 #elseif canImport(UIKit)
-        let songArtwork: UIImage = UIImage(data: value) ?? UIImage()
-        return Image(uiImage: songArtwork)
+        let uiImage: UIImage = UIImage(data: value) ?? UIImage()
+        return Image(uiImage: uiImage)
 #else
         fatalError("Error: Unable to convert date type in UIImage or NSImage")
 #endif
