@@ -9,7 +9,7 @@ import CoreML
 import Vision
 import SwiftUI
 import Core
-import Resources
+import SharedModels
 
 /// The app in this sample identifies the most prominent object in an
 /// image by using `FoodClassifier`, an open source image classifier model that
@@ -22,17 +22,16 @@ import Resources
 
 public protocol MLService {
     
-    // Create image classifier
-    
-    @discardableResult
-    static func createImageClassifier() -> VNCoreMLModel
-    
     // Generates an image classification prediction for a photo.
     
     func makePredictions(
         for imageData: Data,
         completionHandler: @escaping ImagePredictionHandler
     ) throws
+    
+    // Information about a model
+    
+    var modelDescription: MLModelDescription? { get }
 }
 
 //MARK: - Image prediction handler
@@ -60,7 +59,7 @@ public struct Prediction {
 
 //MARK: - MLServiceImpl
 
-final public class MLServiceImpl: ObservableObject {
+final public class MLServiceImpl {
     public init() { }
     
     // A common image classifier instance that all Image Predictor instances use to generate predictions.
@@ -74,11 +73,18 @@ final public class MLServiceImpl: ObservableObject {
 
 extension MLServiceImpl: MLService {
     
+    //MARK: - Model description 
+    
+    public var modelDescription: MLModelDescription? {
+        let model = try? FoodClassifier(configuration: .init())
+        return model?.model.modelDescription
+    }
+    
     //MARK: - Create image classifier
     
     /// - Tag: FoodClassifier
     @discardableResult
-    public static func createImageClassifier() -> VNCoreMLModel {
+    private static func createImageClassifier() -> VNCoreMLModel {
         
         // Use a default model configuration with modelDisplayName.
         
@@ -87,7 +93,7 @@ extension MLServiceImpl: MLService {
         
         // Create an instance of the image classifier's wrapper class.
         
-        let imageClassifierWrapper = try?  FoodClassifier(configuration: defaultConfig)
+        let imageClassifierWrapper = try? FoodClassifier(configuration: defaultConfig)
         
         guard let imageClassifier = imageClassifierWrapper else {
             fatalError("App failed to create an image classifier model instance.")
@@ -123,16 +129,19 @@ extension MLServiceImpl: MLService {
         return imageClassificationRequest
     }
     
-    //MARK: - Make predictions (macOS)
+    //MARK: - Make predictions
     
     // Generates an image classification prediction for a photo.
     
     /// - Parameter photo: An image, typically of an object or a scene.
-    /// - Tag: makePredictions for macOS
+    /// - Tag: makePredictions
     public func makePredictions(
         for imageData: Data,
         completionHandler: @escaping ImagePredictionHandler
     ) throws {
+        
+        // Create NSImage (macOS)
+        
 #if canImport(AppKit)
         guard
             let nsImage = NSImage(data: imageData),
@@ -140,13 +149,17 @@ extension MLServiceImpl: MLService {
                 forProposedRect: nil,
                 context: nil,
                 hints: nil
-            ) else {
+            )
+        else {
             fatalError("Photo doesn't have underlying CGImage.")
         }
         
         //FIXME: - Fix macos image orientation
         
         let orientation: CGImagePropertyOrientation = .up
+        
+        // Create UIImage (iOS)
+        
 #elseif canImport(UIKit)
         guard
             let uiImage = UIImage(data: imageData),
@@ -184,15 +197,20 @@ extension MLServiceImpl: MLService {
     ///
     ///   The method checks for errors and validates the request's results.
     /// - Tag: visionRequestHandler
-    private func visionRequestHandler(_ request: VNRequest, error: Error?) {
+    private func visionRequestHandler(
+        _ request: VNRequest,
+        error: Error?
+    ) {
         
         // Remove the caller's handler from the dictionary and keep a reference to it.
         
-        guard let predictionHandler = self.predictionHandlers.removeValue(forKey: request) else {
+        guard
+            let predictionHandler = self.predictionHandlers.removeValue(forKey: request)
+        else {
             fatalError("Every request must have a prediction handler.")
         }
         
-        // Start with a `nil` value in case there's a problem.
+        /// Start with a `nil` value in case there's a problem.
         
         var predictions: [Prediction]? = nil
         
@@ -212,14 +230,14 @@ extension MLServiceImpl: MLService {
             return
         }
         
-        // Check that the results aren't `nil`.
+        /// Check that the results aren't `nil`.
         
         if request.results == nil {
             print("Vision request had no results.")
             return
         }
         
-        // Cast the request's results as an `VNClassificationObservation` array.
+        /// Cast the request's results as an `VNClassificationObservation` array.
         
         guard let observations = request.results as? [VNClassificationObservation] else {
             
@@ -235,7 +253,7 @@ extension MLServiceImpl: MLService {
         
         predictions = observations.map { observation in
             
-            // Convert each observation into an `ImagePredictor.Prediction` instance.
+            /// Convert each observation into an `Prediction` instance.
             
             Prediction(
                 classification: observation.identifier,
