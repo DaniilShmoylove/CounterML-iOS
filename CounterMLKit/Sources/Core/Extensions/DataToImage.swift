@@ -11,6 +11,8 @@ import SwiftUI
 /// The function `createImage` converts a `Data` type to a `UIImage` type or `NSImage` type
 
 public extension Image {
+    @inlinable
+    @inline(__always)
     static func createImage(_ value: Data) -> Image {
         
         /// Return as `NSImage` type
