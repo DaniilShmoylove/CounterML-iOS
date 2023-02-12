@@ -26,10 +26,10 @@ final public class PhotosPickerHandler: ObservableObject {
     @Published public var imageSelection: PhotosPickerItem? = nil {
         didSet {
             if let imageSelection {
-                let progress = loadTransferable(from: imageSelection)
-                imageState = .loading(progress)
+                let progress = self.loadTransferable(from: imageSelection)
+                self.imageState = .loading(progress)
             } else {
-                imageState = .empty
+                self.imageState = .empty
             }
         }
     }
