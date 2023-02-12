@@ -14,6 +14,7 @@ public extension View {
     /* Extension func */
     /* Func return screen size for both OS */
     
+    @inlinable
     func getRect() -> CGRect {
         
         /* MacOS */
