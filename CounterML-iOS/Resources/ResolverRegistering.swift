@@ -14,10 +14,19 @@ extension Resolver: ResolverRegistering {
         //MARK: - Register MLService
         
         /// Service responsible for processing data in the Food CoreML model.
-        /// The main task of the class is to provide an API for processing data in the model
+        /// The main task of the class is to provide an API for processing data in the model.
         ///
         /// - Tag: Register MLService
         register { MLServiceImpl() }
             .implements(MLService.self)
+        
+        //MARK: - Register CameraService
+        
+        /// Service for processing data from the camera and its transfer.
+        /// The main task of the class is to provide an API for taking photos.
+        ///
+        /// - Tag: Register CameraService
+        register { CameraServiceImpl() }
+            .implements(CameraService.self)
     }
 }
