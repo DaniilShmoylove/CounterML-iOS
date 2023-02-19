@@ -74,10 +74,10 @@ public extension UIButton {
         transform: CGAffineTransform
     ) {
         UIView.animate(
-            withDuration: 0.25,
-            delay: 0,
-            usingSpringWithDamping: 0.35,
-            initialSpringVelocity: 3,
+            withDuration: 0.2,
+            delay: .zero,
+            usingSpringWithDamping: 0.2,
+            initialSpringVelocity: 6,
             options: [.curveEaseInOut],
             animations: {
                 button.transform = transform
