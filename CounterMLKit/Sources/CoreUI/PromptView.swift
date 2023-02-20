@@ -62,7 +62,9 @@ public struct PromptView: View {
         /// User skip
         
             .onTapGesture {
-                self.isShowingPrompt = false 
+                withAnimation(.easeOut) {
+                    self.isShowingPrompt = false
+                }
             }
     }
 }
