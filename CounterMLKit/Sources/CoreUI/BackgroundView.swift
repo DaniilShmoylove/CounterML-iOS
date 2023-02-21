@@ -11,7 +11,7 @@ import SwiftUI
 struct VisualEffectView: NSViewRepresentable {
     func makeNSView(context: Context) -> NSVisualEffectView {
         let effectView = NSVisualEffectView()
-        effectView.state = .active
+        effectView.blendingMode = .behindWindow
         return effectView
     }
     
@@ -31,8 +31,8 @@ struct VisualEffectViewModifier: ViewModifier {
     }
 }
 
-extension View {
-    public func setBackground() -> some View {
+public extension View {
+    func sidebarBackground() -> some View {
         self.modifier(VisualEffectViewModifier())
     }
 }

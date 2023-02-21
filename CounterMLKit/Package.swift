@@ -7,8 +7,8 @@ let package = Package(
     name: "CounterMLKit",
     platforms: [
         .iOS(.v16),
-        .macOS(.v13)]
-    ,
+        .macOS(.v13)
+    ],
     
     //MARK: - Products
     
@@ -21,7 +21,7 @@ let package = Package(
                 "Core",
                 "CoreUI",
                 "Services",
-                "Resources",
+                "SharedModels",
                 "Helpers",
             ]),
         .library(name: "Core", targets: ["Core"]),
@@ -30,10 +30,11 @@ let package = Package(
             name: "Services",
             targets: [
                 "Services",
-                "Resources",
+                "SharedModels",
                 "Core",
+                "Helpers"
             ]),
-        .library(name: "Resources", targets: ["Resources"]),
+        .library(name: "SharedModels", targets: ["SharedModels"]),
         .library(name: "Helpers", targets: ["Helpers"]),
     ],
     
@@ -48,28 +49,28 @@ let package = Package(
             from: "1.5.0"
         ),
     ],
-
-//MARK: - Targets
-
-targets: [
-    // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-    // Targets can depend on other targets in this package, and on products in packages this package depends on.
-    .target(
-        name: "CounterMLKit",
-        dependencies: [
-            "Resolver"
-        ]),
-    .target(name: "Core"),
-    .target(name: "CoreUI"),
-    .target(
-        name: "Services",
-        dependencies: [
-            "Resolver"
-        ]),
-    .target(name: "Resources"),
-    .target(name: "Helpers"),
-    .testTarget(
-        name: "CounterMLKitTests",
-        dependencies: ["CounterMLKit"]),
-]
+    
+    //MARK: - Targets
+    
+    targets: [
+        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
+        // Targets can depend on other targets in this package, and on products in packages this package depends on.
+        .target(
+            name: "CounterMLKit",
+            dependencies: [
+                "Resolver"
+            ]),
+        .target(name: "Core"),
+        .target(name: "CoreUI"),
+        .target(
+            name: "Services",
+            dependencies: [
+                "Resolver"
+            ]),
+        .target(name: "SharedModels"),
+        .target(name: "Helpers"),
+        .testTarget(
+            name: "CounterMLKitTests",
+            dependencies: ["CounterMLKit"]),
+    ]
 )

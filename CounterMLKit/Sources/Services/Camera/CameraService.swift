@@ -170,6 +170,7 @@ extension CameraServiceImpl: CameraService {
     /// Initiates a photo capture using the specified settings.
     /// - Tag: capturePhoto
     public func capturePhoto() {
+        print("Capture")
         guard let delegate else { return }
         self.output.capturePhoto(
             with: self.capturePhotoSettings,
