@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A536F42F29799622007380E3 /* ResolverRegistering.swift in Sources */ = {isa = PBXBuildFile; fileRef = A536F42E29799622007380E3 /* ResolverRegistering.swift */; };
+		A536F434297B5894007380E3 /* UIAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A536F433297B5894007380E3 /* UIAppDelegate.swift */; };
+		A536F437297B5A1E007380E3 /* NSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A536F436297B5A1E007380E3 /* NSAppDelegate.swift */; };
 		A5A144972974BAF4006561A8 /* CounterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A144962974BAF4006561A8 /* CounterApp.swift */; };
 		A5A1449B2974BAF6006561A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5A1449A2974BAF6006561A8 /* Assets.xcassets */; };
 		A5A1449F2974BAF6006561A8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5A1449E2974BAF6006561A8 /* Preview Assets.xcassets */; };
@@ -14,6 +17,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A536F42E29799622007380E3 /* ResolverRegistering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolverRegistering.swift; sourceTree = "<group>"; };
+		A536F432297B3B94007380E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A536F433297B5894007380E3 /* UIAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAppDelegate.swift; sourceTree = "<group>"; };
+		A536F436297B5A1E007380E3 /* NSAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAppDelegate.swift; sourceTree = "<group>"; };
 		A5A144932974BAF4006561A8 /* CounterML-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CounterML-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5A144962974BAF4006561A8 /* CounterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterApp.swift; sourceTree = "<group>"; };
 		A5A1449A2974BAF6006561A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -34,6 +41,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A536F4312979EC18007380E3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A5A1449A2974BAF6006561A8 /* Assets.xcassets */,
+				A536F42E29799622007380E3 /* ResolverRegistering.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A536F435297B5A0C007380E3 /* Lifecycle */ = {
+			isa = PBXGroup;
+			children = (
+				A536F433297B5894007380E3 /* UIAppDelegate.swift */,
+				A536F436297B5A1E007380E3 /* NSAppDelegate.swift */,
+			);
+			path = Lifecycle;
+			sourceTree = "<group>";
+		};
 		A5A1448A2974BAF4006561A8 = {
 			isa = PBXGroup;
 			children = (
@@ -55,9 +80,11 @@
 		A5A144952974BAF4006561A8 /* CounterML-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				A536F435297B5A0C007380E3 /* Lifecycle */,
+				A536F432297B3B94007380E3 /* Info.plist */,
+				A536F4312979EC18007380E3 /* Resources */,
 				A5A1449C2974BAF6006561A8 /* CounterML_iOS.entitlements */,
 				A5A144962974BAF4006561A8 /* CounterApp.swift */,
-				A5A1449A2974BAF6006561A8 /* Assets.xcassets */,
 				A5A1449D2974BAF6006561A8 /* Preview Content */,
 			);
 			path = "CounterML-iOS";
@@ -151,7 +178,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A536F434297B5894007380E3 /* UIAppDelegate.swift in Sources */,
+				A536F42F29799622007380E3 /* ResolverRegistering.swift in Sources */,
 				A5A144972974BAF4006561A8 /* CounterApp.swift in Sources */,
+				A536F437297B5A1E007380E3 /* NSAppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,8 +310,10 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "CounterML-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Counter;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Take photos";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -320,8 +352,10 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "CounterML-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Counter;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Take photos";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
