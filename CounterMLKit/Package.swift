@@ -42,7 +42,7 @@ let package = Package(
     
     dependencies: [
         
-        //An ultralight Dependency Injection / Service Locator framework for Swift 5.x on iOS.
+        // An ultralight Dependency Injection / Service Locator framework for Swift 5.x on iOS.
         
         .package(
             url: "https://github.com/hmlongco/Resolver",
