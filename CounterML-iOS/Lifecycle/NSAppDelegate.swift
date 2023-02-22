@@ -7,10 +7,13 @@
 
 #if canImport(AppKit)
 import AppKit
+import FirebaseCore
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(
         _ notification: Notification
-    ) { }
+    ) {
+        FirebaseApp.configure()
+    }
 }
 #endif

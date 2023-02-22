@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A50765DA29A6446A00E4AE8A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A50765D929A6446A00E4AE8A /* GoogleService-Info.plist */; };
+		A536E24329A6327B005A3ABE /* FirebaseBinaries in Frameworks */ = {isa = PBXBuildFile; productRef = A536E24229A6327B005A3ABE /* FirebaseBinaries */; };
+		A536E24729A63545005A3ABE /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A536E24629A6343E005A3ABE /* libc++.tbd */; };
 		A536F42F29799622007380E3 /* ResolverRegistering.swift in Sources */ = {isa = PBXBuildFile; fileRef = A536F42E29799622007380E3 /* ResolverRegistering.swift */; };
 		A536F434297B5894007380E3 /* UIAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A536F433297B5894007380E3 /* UIAppDelegate.swift */; };
 		A536F437297B5A1E007380E3 /* NSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A536F436297B5A1E007380E3 /* NSAppDelegate.swift */; };
@@ -17,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A50765D929A6446A00E4AE8A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A536E24129A63272005A3ABE /* FirebaseBinaries */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = FirebaseBinaries; sourceTree = "<group>"; };
+		A536E24629A6343E005A3ABE /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.2.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
 		A536F42E29799622007380E3 /* ResolverRegistering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolverRegistering.swift; sourceTree = "<group>"; };
 		A536F432297B3B94007380E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A536F433297B5894007380E3 /* UIAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAppDelegate.swift; sourceTree = "<group>"; };
@@ -34,6 +40,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A536E24729A63545005A3ABE /* libc++.tbd in Frameworks */,
+				A536E24329A6327B005A3ABE /* FirebaseBinaries in Frameworks */,
 				A5C591702975E6CB00D422B6 /* CounterMLKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -44,6 +52,7 @@
 		A536F4312979EC18007380E3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A50765D929A6446A00E4AE8A /* GoogleService-Info.plist */,
 				A5A1449A2974BAF6006561A8 /* Assets.xcassets */,
 				A536F42E29799622007380E3 /* ResolverRegistering.swift */,
 			);
@@ -62,6 +71,7 @@
 		A5A1448A2974BAF4006561A8 = {
 			isa = PBXGroup;
 			children = (
+				A536E24129A63272005A3ABE /* FirebaseBinaries */,
 				A5C5916D2975E6BD00D422B6 /* CounterMLKit */,
 				A5A144952974BAF4006561A8 /* CounterML-iOS */,
 				A5A144942974BAF4006561A8 /* Products */,
@@ -101,6 +111,7 @@
 		A5C5916E2975E6CB00D422B6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A536E24629A6343E005A3ABE /* libc++.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -123,6 +134,7 @@
 			name = "CounterML-iOS";
 			packageProductDependencies = (
 				A5C5916F2975E6CB00D422B6 /* CounterMLKit */,
+				A536E24229A6327B005A3ABE /* FirebaseBinaries */,
 			);
 			productName = "CounterML-iOS";
 			productReference = A5A144932974BAF4006561A8 /* CounterML-iOS.app */;
@@ -168,6 +180,7 @@
 			files = (
 				A5A1449F2974BAF6006561A8 /* Preview Assets.xcassets in Resources */,
 				A5A1449B2974BAF6006561A8 /* Assets.xcassets in Resources */,
+				A50765DA29A6446A00E4AE8A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +342,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.DaniilShmoylove.CounterML-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -371,6 +385,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.DaniilShmoylove.CounterML-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -405,6 +420,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A536E24229A6327B005A3ABE /* FirebaseBinaries */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseBinaries;
+		};
 		A5C5916F2975E6CB00D422B6 /* CounterMLKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CounterMLKit;
