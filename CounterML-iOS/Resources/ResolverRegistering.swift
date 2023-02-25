@@ -28,5 +28,15 @@ extension Resolver: ResolverRegistering {
         /// - Tag: Register CameraService
         register { CameraServiceImpl() }
             .implements(CameraService.self)
+        
+        //MARK: - Register StorageService
+        
+        
+        /// Service that interacts with the Firestore database.
+        /// The main task of the class is to provide an API for interacting with database data.
+        ///
+        /// - Tag: Register StorageService
+        register { StorageServiceImpl() }
+            .implements(StorageService.self)
     }
 }
