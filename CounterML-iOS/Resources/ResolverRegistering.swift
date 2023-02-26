@@ -5,9 +5,14 @@
 //  Created by Daniil Shmoylove on 19.01.2023.
 //
 
-import Services
 import Resolver
+import Services
 
+//MARK: - ResolverRegistering
+
+/// Resolver is a Dependency Injection registry that registers Services for later
+/// resolution and injection into newly constructed instances.
+/// - Tag: ResolverRegistering
 extension Resolver: ResolverRegistering {
     public static func registerAllServices() {
         
@@ -31,12 +36,19 @@ extension Resolver: ResolverRegistering {
         
         //MARK: - Register StorageService
         
-        
         /// Service that interacts with the Firestore database.
         /// The main task of the class is to provide an API for interacting with database data.
         ///
         /// - Tag: Register StorageService
         register { StorageServiceImpl() }
             .implements(StorageService.self)
+        
+        //MARK: - Register PersistenceContainer
+        
+        /// A global container that encapsulates the Core Data stack in app.
+        ///
+        /// - Tag: Register PersistenceContainer
+        register { PersistenceContainer() }
+            .scope(.application)
     }
 }
