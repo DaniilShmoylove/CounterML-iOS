@@ -50,5 +50,14 @@ extension Resolver: ResolverRegistering {
         /// - Tag: Register PersistenceContainer
         register { PersistenceContainer() }
             .scope(.application)
+        
+        //MARK: - Register ClassificationPersistenceService
+        
+        /// Service that provides an API for managing a `CoreData`
+        /// The main task of the class is to receive, save, search for classification data
+        ///
+        /// - Tag: ClassificationPersistenceService
+        register { ClassificationPersistenceServiceImpl() }
+            .implements(ClassificationPersistenceService.self)
     }
 }

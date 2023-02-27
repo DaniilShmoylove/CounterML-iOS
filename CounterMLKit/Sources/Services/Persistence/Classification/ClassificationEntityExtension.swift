@@ -52,7 +52,7 @@ public extension ClassificationEntity {
     /// - Parameters:
     ///    - data: Collection of data that is requested from the server
     ///
-    /// - Tag: FetchClassification
+    /// - Tag: Download
     static func download(
         _ data: [ClassificationModel]
     ) throws {

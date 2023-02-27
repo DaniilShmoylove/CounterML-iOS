@@ -47,12 +47,12 @@ public typealias ImagePredictionHandler = (_ predictions: [Prediction]?) -> Void
 /// - Tag: Prediction
 public struct Prediction {
     
-    // The name of the object or scene the image classifier recognizes in an image.
+    /// The name of the object or scene the image classifier recognizes in an image.
     
     public let classification: String
     
-    // The image classifier's confidence as a percentage string.
-    // The prediction string doesn't include the % symbol in the string.
+    /// The image classifier's confidence as a percentage string.
+    /// The prediction string doesn't include the % symbol in the string.
     
     public let confidencePercentage: String
 }
@@ -62,11 +62,11 @@ public struct Prediction {
 final public class MLServiceImpl {
     public init() { }
     
-    // A common image classifier instance that all Image Predictor instances use to generate predictions.
+    /// A common image classifier instance that all Image Predictor instances use to generate predictions.
     
     private static let imageClassifier = createImageClassifier()
     
-    // A dictionary of prediction handler functions, each keyed by its Vision request.
+    /// A dictionary of prediction handler functions, each keyed by its Vision request.
     
     private var predictionHandlers = [VNRequest: ImagePredictionHandler]()
 }
@@ -114,7 +114,7 @@ extension MLServiceImpl: MLService {
     
     //MARK: - Create image classification request
     
-    // Generates a new request instance that uses the Image Predictor's image classifier model.
+    /// Generates a new request instance that uses the Image Predictor's image classifier model.
     
     private func createImageClassificationRequest() -> VNImageBasedRequest {
         
@@ -131,9 +131,10 @@ extension MLServiceImpl: MLService {
     
     //MARK: - Make predictions
     
-    // Generates an image classification prediction for a photo.
-    
+    /// Generates an image classification prediction for a photo.
+    ///
     /// - Parameter photo: An image, typically of an object or a scene.
+    ///
     /// - Tag: makePredictions
     public func makePredictions(
         for imageData: Data,
