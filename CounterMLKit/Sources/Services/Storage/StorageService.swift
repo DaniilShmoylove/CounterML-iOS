@@ -9,11 +9,11 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import SharedModels
 
-/// Service that interacts with the `Firestore` database.
-/// The main task of the class is to provide an API for interacting with database data.
-
 //MARK: - StorageService protocol
 
+/// Service that interacts with the `Firestore` database.
+/// The main task of the class is to provide an API for interacting with database data.
+///
 /// - Tag: StorageService
 public protocol StorageService {
     
@@ -22,6 +22,10 @@ public protocol StorageService {
     func fetchClassifierDocument(
         for name: String
     ) async throws -> ClassificationModel
+    
+    /// Retrieves all classification data from Firestore.
+    
+    func fetchAllClassifierDocuments() async throws -> [ClassificationModel]
 }
 
 //MARK: - StorageServiceImpl
@@ -46,12 +50,13 @@ extension StorageServiceImpl: StorageService {
     ///     - name: Must not be empty
     ///
     /// - Returns: Model `ClassificationModel` by classification name.
-    /// - Tag: GetClassifierDocument
+    ///
+    /// - Tag: FetchClassifierDocument
     @discardableResult
     public func fetchClassifierDocument(
         for name: String
     ) async throws -> ClassificationModel {
-        let foodRef = self.database.collection(StoragePath.classifierFood)
+        let foodRef = self.database.collection(StoragePath.classifierCollection)
         let nameQuery = foodRef.document(name)
         
         do {
@@ -61,12 +66,32 @@ extension StorageServiceImpl: StorageService {
             throw error
         }
     }
+    
+    //MARK: - Fetch all classifier documents
+    
+    /// Retrieves all classification data from Firestore.
+    ///
+    /// - Tag: FetchAllClassifierData
+    @discardableResult
+    public func fetchAllClassifierDocuments(
+    ) async throws -> [ClassificationModel] {
+        let foodRef = self.database.collection(StoragePath.classifierCollection)
+        
+        do {
+            let query = try await foodRef.getDocuments()
+            let documents = try query.documents.compactMap { try $0.data(as: ClassificationModel.self) }
+            return documents
+        } catch {
+            throw error
+        }
+    }
 }
 
 //MARK: - Storage path
 
 /// Specifies the path to a collection or document in a firestore database
+///
 /// - Tag: StoragePath
 fileprivate enum StoragePath {
-    static let classifierFood: String = "Food"
+    static let classifierCollection: String = "Food"
 }
