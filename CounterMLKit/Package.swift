@@ -42,7 +42,7 @@ let package = Package(
     
     dependencies: [
         
-        //An ultralight Dependency Injection / Service Locator framework for Swift 5.x on iOS.
+        /// An ultralight Dependency Injection / Service Locator framework for Swift 5.x on iOS.
         
         .package(
             url: "https://github.com/hmlongco/Resolver",
@@ -58,14 +58,14 @@ let package = Package(
         .target(
             name: "CounterMLKit",
             dependencies: [
-                "Resolver"
+                .product(name: "Resolver", package: "Resolver"),
             ]),
         .target(name: "Core"),
         .target(name: "CoreUI"),
         .target(
             name: "Services",
             dependencies: [
-                "Resolver"
+                .product(name: "Resolver", package: "Resolver")
             ]),
         .target(name: "SharedModels"),
         .target(name: "Helpers"),

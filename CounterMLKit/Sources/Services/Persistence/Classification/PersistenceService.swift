@@ -10,7 +10,7 @@ import CoreData
 import SharedModels
 import Resolver
 
-//MARK: - ClassificationPersistenceService
+//MARK: - ClassificationPersistenceService protocol
 
 /// Service that provides an API for managing a `CoreData`
 /// The main task of the class is to receive, save, search for classification data
