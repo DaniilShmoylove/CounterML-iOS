@@ -14,8 +14,7 @@ public struct CounterView: View {
     
     public var body: some View {
         NavigationStack(path: self.$coordinator.path) {
-            List {
-            }
+            List { }
             
             //MARK: - Toolbar
             
@@ -48,6 +47,7 @@ public struct CounterView: View {
         //MARK: - Environments
         
         .environmentObject(self.coordinator)
+        
     }
 }
 

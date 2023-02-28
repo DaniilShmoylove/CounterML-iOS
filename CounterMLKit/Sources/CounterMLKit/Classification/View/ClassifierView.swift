@@ -11,12 +11,17 @@ import Core
 import CoreUI
 import Helpers
 import SharedModels
+import CoreData
 
+//MARK: - ClassifierView
+
+/// This is a view of the screen for adding and setting classification object data.
+/// - Tag: ClassifierView
 struct ClassifierView: View {
     
-    //MARK: - Classification data
+    //MARK: - ViewModel
     
-    @State private var data: DishModel
+    @State private var data: ClassificationModel
     
     //MARK: - Focused field
     
@@ -24,13 +29,13 @@ struct ClassifierView: View {
     
     //MARK: - Init
     
-    init(data: DishModel) {
+    init(data: ClassificationModel) {
         self._data = State(initialValue: data)
     }
     
     var body: some View {
         NavigationStack {
-            Form {
+            List {
                 
                 /// Classifier Image
                 
@@ -50,7 +55,6 @@ struct ClassifierView: View {
                 
                 self.optionsView
             }
-            .scrollDismissesKeyboard(.interactively)
             
             //MARK: - Status bar view
             
@@ -67,6 +71,8 @@ struct ClassifierView: View {
                     self.keyboardBarView
                 }
             }
+            
+            .scrollDismissesKeyboard(.interactively)
         }
         .tint(.accentColor)
     }
@@ -87,6 +93,7 @@ extension ClassifierView {
             if let description = self.data.description {
                 Text(description)
                     .font(.footnote)
+                    .foregroundColor(.secondary)
             }
         }
     }
@@ -100,7 +107,7 @@ extension ClassifierView {
                     .foregroundColor(.secondary)
                     .frame(width: 68, alignment: .leading)
                 
-                TextField("Enter", text: self.$data.weight)
+                TextField("Enter", text: .constant("100"))
                     .focused(self.$focusedField, equals: .weight)
                     .keyboardType(.numberPad)
             }

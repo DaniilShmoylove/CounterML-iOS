@@ -6,14 +6,13 @@
 //
 
 import SwiftUI
-
-//TODO: - Prepare CounterMLKit
-
 import CounterMLKit
-import Services
+import Helpers
 
 @main
 struct CounterApp: App {
+    
+    private let backgroundTaskManager = BackgroundTaskManager()
     
     //MARK: - MacOS scene
     
@@ -43,6 +42,15 @@ struct CounterApp: App {
                         Label("Today", systemImage: "calendar")
                     }
             }
+        }
+        
+        //MARK: - Background task
+        
+        /// Update classification data base in background
+        
+        .backgroundTask(.appRefresh(BGManager.identifier)) {
+            BGManager.scheduleAppRefresh()
+            await self.backgroundTaskManager.updateClassificationData()
         }
     }
 #endif

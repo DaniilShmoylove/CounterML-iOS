@@ -11,36 +11,38 @@ import Resolver
 import Foundation
 import SharedModels
 import AVFoundation
-
-/// This is the class that interacts with the camera and the classification model.
-/// The main task of the class is to provide the captured data to the CoreML model.
+import Helpers
+import CoreData
 
 //MARK: - ClassificationViewModel
 
+/// This is the class that interacts with the camera and the classification model.
+/// The main task of the class is to provide the captured data to the CoreML model.
+/// - Tag: ClassificationViewModel
 final class ClassificationViewModel: ObservableObject {
     
-    //MARK: - Services
+    //MARK: - MLService
     
     @Injected private var mlService: MLService
     
+    //MARK: - StorageService
+    
+    @Injected private var storageService: StorageService
+    
+    //MARK: - ClassificationPersistenceService
+    
+    @Injected private var classificationPersistenceService: ClassificationPersistenceService
+    
     //MARK: - Classification data
     
-    @Published var capturedClassification: DishModel? = nil
+    @Published var classification: ClassificationModel? = nil 
     
-    // The largest number of predictions displays the user.
+    //MARK: - Image data
     
-    private let predictionsToShow: Int = 3
-    
-    // The largest value of confidence percentage.
-    
-    private let confidencePercentageThreshold: Double = 55
-    
-    // Captured image data
-    
-    private var capturedImageData: Data? = nil {
+    private var imageData: Data? = nil {
         didSet {
-            guard let capturedImageData else { return }
-            self.classifyImage(capturedImageData)
+            guard let imageData else { return }
+            self.classifyImage(imageData)
         }
     }
 }
@@ -66,29 +68,59 @@ extension ClassificationViewModel {
     
     /// The method the Image Predictor calls when its image classifier model generates a prediction.
     /// - Parameter predictions: An array of predictions.
+    ///
     /// - Tag: imagePredictionHandler
     private func imagePredictionHandler(
         _ predictions: [Prediction]?
     ) {
+        /// Nil predictions data
+        
         guard let predictions = predictions else {
             //TODO: - No image
             return
         }
         
+        /// Formatted predictions to string
+        
         let formattedPredictions = self.formatPredictions(predictions)
         
-        let predictionString = formattedPredictions
-            .first?
-            .name
-            .replacingOccurrences(of: "_", with: " ")
+        /// Empty predictions data
         
-        self.capturedClassification = .init(
-            imageData: self.capturedImageData,
-            name: predictionString ?? ""
-        )
+        guard let predictionString = formattedPredictions.first?.name else {
+            self.classification = .init(imageData: self.imageData)
+            return
+        }
         
-        //TODO: - Present logic
+        Task {
+            do {
+                if let classification = try await self.classificationPersistenceService.fetch(predictionString) {
+                    
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self else { return }
+                        self.classification = classification.classification
+                        self.classification?.imageData = self.imageData
+                    }
+                } else {
+                    let classification = try await self.storageService.fetchClassifierDocument(
+                        for: predictionString
+                    )
+                    
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self else { return }
+                        self.classification = classification
+                        self.classification?.imageData = self.imageData
+                    }
+                }
+            } catch {
+                DispatchQueue.main.async { [weak self] in
+                    guard let self else { return }
+                    self.classification = .init(imageData: self.imageData)
+                }
+            }
+        }
     }
+    
+    //MARK: - Format predictions
     
     /// Converts a prediction's observations into human-readable strings.
     /// - Parameter observations: The classification observations from a Vision request.
@@ -97,13 +129,21 @@ extension ClassificationViewModel {
         _ predictions: [Prediction]
     ) -> [(name: String, percentage: String)] {
         
+        /// The largest number of predictions displays the user.
+        
+        let predictionsToShow: Int = 3
+        
+        /// The largest value of confidence percentage.
+        
+        let confidencePercentageThreshold: Double = 55
+        
         /// Vision sorts the classifications in descending confidence order.
         
-        return predictions.prefix(self.predictionsToShow)
+        return predictions.prefix(predictionsToShow)
         
         /// Сheck if confidencePercentage is greater than confidencePercentageThreshold.
         
-            .filter { Double($0.confidencePercentage) ?? .zero > self.confidencePercentageThreshold }
+            .filter { Double($0.confidencePercentage) ?? .zero > confidencePercentageThreshold }
             .map { prediction in
                 var name = prediction.classification
                 
@@ -139,7 +179,7 @@ extension ClassificationViewModel {
                 
                 /// The image data that is given to the model for classification.
                 
-                self.capturedImageData = data
+                self.imageData = data
             } else {
                 fatalError("Error: no image data found.")
             }

@@ -40,7 +40,7 @@ struct CameraClassificationView: View {
         //MARK: - Add Classifier view
         
         .sheet(
-            item: self.$viewModel.capturedClassification
+            item: self.$viewModel.classification
         ) {
             ClassifierView(data: $0)
                 .presentationDetents([.large])

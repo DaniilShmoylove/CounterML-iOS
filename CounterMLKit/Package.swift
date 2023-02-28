@@ -35,7 +35,7 @@ let package = Package(
                 "Helpers"
             ]),
         .library(name: "SharedModels", targets: ["SharedModels"]),
-        .library(name: "Helpers", targets: ["Helpers"]),
+        .library(name: "Helpers", targets: ["Helpers", "Services"]),
     ],
     
     //MARK: - Dependencies
