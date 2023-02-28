@@ -42,6 +42,7 @@ extension Resolver: ResolverRegistering {
         /// - Tag: Register StorageService
         register { StorageServiceImpl() }
             .implements(StorageService.self)
+            .scope(.application)
         
         //MARK: - Register PersistenceContainer
         

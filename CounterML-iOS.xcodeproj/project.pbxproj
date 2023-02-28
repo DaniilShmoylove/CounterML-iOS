@@ -19,6 +19,19 @@
 		A5C591702975E6CB00D422B6 /* CounterMLKit in Frameworks */ = {isa = PBXBuildFile; productRef = A5C5916F2975E6CB00D422B6 /* CounterMLKit */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A5A7263C29AD683100342177 /* Embed ExtensionKit Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(EXTENSIONS_FOLDER_PATH)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed ExtensionKit Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		A50765D929A6446A00E4AE8A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A536E24129A63272005A3ABE /* FirebaseBinaries */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = FirebaseBinaries; sourceTree = "<group>"; };
@@ -126,6 +139,7 @@
 				A5A1448F2974BAF4006561A8 /* Sources */,
 				A5A144902974BAF4006561A8 /* Frameworks */,
 				A5A144912974BAF4006561A8 /* Resources */,
+				A5A7263C29AD683100342177 /* Embed ExtensionKit Extensions */,
 			);
 			buildRules = (
 			);
@@ -313,6 +327,7 @@
 		A5A144A32974BAF6006561A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "CounterML-iOS/CounterML_iOS.entitlements";
@@ -356,6 +371,7 @@
 		A5A144A42974BAF6006561A8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "CounterML-iOS/CounterML_iOS.entitlements";

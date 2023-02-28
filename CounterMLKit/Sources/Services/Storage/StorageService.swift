@@ -37,7 +37,7 @@ final public class StorageServiceImpl {
     //MARK: - Data base object
     
     /// - Tag: Database
-    private let database = Firestore.firestore()
+    private lazy var database = Firestore.firestore()
 }
 
 extension StorageServiceImpl: StorageService {

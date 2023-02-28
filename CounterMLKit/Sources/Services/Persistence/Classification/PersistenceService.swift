@@ -29,6 +29,8 @@ public protocol ClassificationPersistenceService {
     func downloadClassificationData(
         _ data: [ClassificationModel]
     ) throws
+    
+    var isNonDataUploaded: Bool { get }
 }
 
 //MARK: - ClassificationPersistenceServiceImpl
@@ -86,46 +88,6 @@ extension ClassificationPersistenceServiceImpl: ClassificationPersistenceService
         return entities.first
     }
     
-    //MARK: - Fetch entity
-    
-    /// Search an object entity by string `name`.
-    ///
-    /// - Parameters:
-    ///     - predicateString: a name of `ClassificationEntity`, a definition of logical
-    ///     conditions for constraining a search for a fetch or for in-memory filtering.
-    ///
-    /// - Tag: Fetch
-    @discardableResult
-    public func fetch(
-        _ predicateString: String
-    ) throws -> ClassificationEntity? {
-        let request = NSFetchRequest<ClassificationEntity>(
-            entityName: CoreDataPath.entityName
-        )
-        
-        let format = "name BEGINSWITH %@"
-        request.predicate = NSPredicate(
-            format: format,
-            predicateString
-        )
-        
-        request.sortDescriptors = [
-            NSSortDescriptor(
-                key: "name",
-                ascending: true
-            )
-        ]
-        
-        request.fetchLimit = 1
-        
-        do {
-            let entities = try self.container.viewContext.fetch(request)
-            return entities.first
-        } catch {
-            throw error
-        }
-    }
-    
     //MARK: - Download classification data
     
     /// Download `[ClassificationEntity]` data into a persistent store.
@@ -144,5 +106,17 @@ extension ClassificationPersistenceServiceImpl: ClassificationPersistenceService
         }
         
         self.container.saveContext()
+    }
+    
+    //MARK: - isDataUploaded
+    
+    /// - Tag: IsNonDataUploaded
+    public var isNonDataUploaded: Bool {
+        let request = NSFetchRequest<ClassificationEntity>(
+            entityName: CoreDataPath.entityName
+        )
+        
+        let count = try? self.container.viewContext.count(for: request)
+        return count ?? 0 == 0
     }
 }
