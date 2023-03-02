@@ -11,4 +11,5 @@ import Foundation
 
 enum Route: Hashable {
     case signUp
+    case setUpCredential 
 }
