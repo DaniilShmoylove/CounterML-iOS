@@ -11,13 +11,15 @@ import GoogleSignIn
 
 //MARK: - AuthenticationService protocol
 
-/// Service that provides an API for `Firebase` user authentication
-/// The main task of the class is to authenticate, sign out, the user
+/// Service that provides an API for `Firebase` user authentication.
+/// The main task of the class is to authenticate, sign out, the user.
 ///
-/// - Tag: PersistenceService
+/// > To handle user data, use the ``UserService`` class.
+///
+/// - Tag: AuthenticationService
 public protocol AuthenticationService {
     func createGoogleCredential() async throws
-    func authenticate() async throws
+    func authenticate() async throws -> AuthDataResult?
     func signOut() throws
 }
 
@@ -25,6 +27,7 @@ public protocol AuthenticationService {
 
 final public class AuthenticationServiceImpl {
     public init() { }
+    
     //MARK: - AuthCredential
     
     /// - Tag: Credential
@@ -39,17 +42,23 @@ extension AuthenticationServiceImpl: AuthenticationService {
     /// This method creates credentials for `GoogleSignIn`
     ///
     /// - Tag: CreateGoogleCredential
+    @MainActor
     public func createGoogleCredential() async throws {
-        let scenes = await UIApplication.shared.connectedScenes
+        let scenes = UIApplication.shared.connectedScenes
         
         guard
             let windowScene = scenes.first as? UIWindowScene,
-            let viewController = await windowScene.windows.first?.rootViewController
+            let viewController = windowScene.windows.first?.rootViewController
         else { return }
         
         guard
             let clientID = FirebaseApp.app()?.options.clientID
         else { return }
+        
+        /// Set active configuration for this instance of GIDSignIn.
+        
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
         
         do {
             
@@ -62,11 +71,6 @@ extension AuthenticationServiceImpl: AuthenticationService {
             guard
                 let idToken = result.user.idToken?.tokenString
             else { return }
-            
-            /// Set active configuration for this instance of GIDSignIn.
-            
-            let config = GIDConfiguration(clientID: clientID)
-            GIDSignIn.sharedInstance.configuration = config
             
             /// Create google credential
             
@@ -85,10 +89,22 @@ extension AuthenticationServiceImpl: AuthenticationService {
     
     /// Login with user `credential`.
     ///
-    /// - Tag: SignIn
-    public func authenticate() async throws {
-        guard let credential = self.credential else { return }
-        try await Auth.auth().signIn(with: credential)
+    /// > Use this method only after the `credential` has been created.
+    ///
+    /// - Returns: A object of `AuthDataResult?` type.
+    ///
+    /// - Tag: Authenticate
+    @discardableResult
+    public func authenticate(
+    ) async throws -> AuthDataResult? {
+        guard let credential = self.credential else { return nil }
+        
+        do {
+            let result = try await Auth.auth().signIn(with: credential)
+            return result
+        } catch {
+            throw error
+        }
     }
     
     //MARK: - Sign out
