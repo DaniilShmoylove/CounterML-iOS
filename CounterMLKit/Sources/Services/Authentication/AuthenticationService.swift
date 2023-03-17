@@ -18,8 +18,9 @@ import GoogleSignIn
 ///
 /// - Tag: AuthenticationService
 public protocol AuthenticationService {
-    func createGoogleCredential() async throws
-    func authenticate() async throws -> AuthDataResult?
+    func signInWithGoogle() async throws
+    func signIn(withEmail: String, password: String) async throws
+    func signUp(withEmail: String, password: String) async throws
     func signOut() throws
 }
 
@@ -30,6 +31,8 @@ final public class AuthenticationServiceImpl {
     
     //MARK: - AuthCredential
     
+    /// This credential is created  by GoogleSignIn and Email & Password
+    ///
     /// - Tag: Credential
     private var credential: AuthCredential?
 }
@@ -37,13 +40,13 @@ final public class AuthenticationServiceImpl {
 /// - Tag: AuthenticationServiceImpl
 extension AuthenticationServiceImpl: AuthenticationService {
     
-    //MARK: - CreateGoogleCredential
+    //MARK: - SignInWithGoogle
     
     /// This method creates credentials for `GoogleSignIn`
     ///
-    /// - Tag: CreateGoogleCredential
+    /// - Tag: SignInWithGoogle
     @MainActor
-    public func createGoogleCredential() async throws {
+    public func signInWithGoogle() async throws {
         let scenes = UIApplication.shared.connectedScenes
         
         guard
@@ -80,6 +83,28 @@ extension AuthenticationServiceImpl: AuthenticationService {
             )
             
             self.credential = credential
+            try await self.authenticate()
+        } catch {
+            throw error
+        }
+    }
+    
+    //MARK: - SignIn
+    
+    /// This method creates credentials for `Email & Password`
+    ///
+    /// - Tag: SignIn
+    public func signIn(
+        withEmail: String,
+        password: String
+    ) async throws {
+        do {
+            self.credential = EmailAuthProvider
+                .credential(
+                    withEmail: withEmail,
+                    password: password
+                )
+            try await self.authenticate()
         } catch {
             throw error
         }
@@ -95,13 +120,31 @@ extension AuthenticationServiceImpl: AuthenticationService {
     ///
     /// - Tag: Authenticate
     @discardableResult
-    public func authenticate(
+    private func authenticate(
     ) async throws -> AuthDataResult? {
         guard let credential = self.credential else { return nil }
         
         do {
             let result = try await Auth.auth().signIn(with: credential)
             return result
+        } catch {
+            throw error
+        }
+    }
+    
+    //MARK: - Sign up
+    
+    /// - Tag: SignUp
+    public func signUp(
+        withEmail: String,
+        password: String
+    ) async throws {
+        do {
+            try await Auth.auth()
+                .createUser(
+                    withEmail: withEmail,
+                    password: password
+                )
         } catch {
             throw error
         }
