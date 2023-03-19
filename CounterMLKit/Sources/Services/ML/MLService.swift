@@ -11,15 +11,16 @@ import SwiftUI
 import Core
 import SharedModels
 
+//MARK: - MLService protocol
+
 /// The app in this sample identifies the most prominent object in an
 /// image by using `FoodClassifier`, an open source image classifier model that
 /// recognizes around ~200 different categories.
-
+///
 /// Service responsible for processing data in the Food CoreML model.
 /// The main task of the class is to provide an API for processing data in the model
-
-//MARK: - MLService protocol
-
+///
+/// - Tag: MLService
 public protocol MLService {
     
     // Generates an image classification prediction for a photo.
