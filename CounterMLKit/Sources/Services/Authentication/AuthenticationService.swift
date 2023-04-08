@@ -8,6 +8,8 @@
 import FirebaseCore
 import FirebaseAuth
 import GoogleSignIn
+import SharedModels
+import Resolver
 
 //MARK: - AuthenticationService protocol
 
@@ -19,8 +21,8 @@ import GoogleSignIn
 /// - Tag: AuthenticationService
 public protocol AuthenticationService {
     func signInWithGoogle() async throws
-    func signIn(withEmail: String, password: String) async throws
-    func signUp(withEmail: String, password: String) async throws
+    func signIn(_ signCredential: SignCredential) async throws
+    func signUp(_ signCredential: SignCredential) async throws
     func signOut() throws
 }
 
@@ -28,6 +30,10 @@ public protocol AuthenticationService {
 
 final public class AuthenticationServiceImpl {
     public init() { }
+    
+    //MARK: - KeychainService
+    
+    @Injected private var keychainService: KeychainService
     
     //MARK: - AuthCredential
     
@@ -94,15 +100,12 @@ extension AuthenticationServiceImpl: AuthenticationService {
     /// This method creates credentials for `Email & Password`
     ///
     /// - Tag: SignIn
-    public func signIn(
-        withEmail: String,
-        password: String
-    ) async throws {
+    public func signIn(_ signCredential: SignCredential) async throws {
         do {
             self.credential = EmailAuthProvider
                 .credential(
-                    withEmail: withEmail,
-                    password: password
+                    withEmail: signCredential.email,
+                    password: signCredential.password
                 )
             try await self.authenticate()
         } catch {
@@ -134,17 +137,22 @@ extension AuthenticationServiceImpl: AuthenticationService {
     
     //MARK: - Sign up
     
+    /// Registers a new user.
+    /// 
+    /// > This method implements the work of ``KeychainService``.
+    /// > When a user creates an account, his data is stored in `Keychain`.
+    ///
     /// - Tag: SignUp
-    public func signUp(
-        withEmail: String,
-        password: String
-    ) async throws {
+    public func signUp(_ signCredential: SignCredential) async throws {
         do {
-            try await Auth.auth()
+            let result = try await Auth.auth()
                 .createUser(
-                    withEmail: withEmail,
-                    password: password
+                    withEmail: signCredential.email,
+                    password: signCredential.password
                 )
+            self.credential = result.credential
+            
+            try self.keychainService.save(signCredential)
         } catch {
             throw error
         }

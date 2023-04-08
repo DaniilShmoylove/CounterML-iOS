@@ -57,8 +57,28 @@ extension Resolver: ResolverRegistering {
         /// Service that provides an API for managing a `CoreData`
         /// The main task of the class is to receive, save, search for classification data
         ///
-        /// - Tag: ClassificationPersistenceService
+        /// - Tag: Register ClassificationPersistenceService
         register { ClassificationPersistenceServiceImpl() }
             .implements(ClassificationPersistenceService.self)
+        
+        //MARK: - Register AuthenticationService
+        
+        /// Service that provides an API for `Firebase` user authentication
+        /// The main task of the class is to authenticate, sign out, the user
+        ///
+        /// - Tag: Register AuthenticationService
+        register { AuthenticationServiceImpl() }
+            .implements(AuthenticationService.self)
+            .scope(.application)
+        
+        //MARK: - KeychainService protocol
+
+        /// Keychain Services is a secure storage interface for macOS and iOS
+        /// best used for small pieces of private data like passwords, cookies, and authentication tokens.
+        ///
+        /// - Tag: KeychainService
+        register { KeychainServiceImpl() }
+            .implements(KeychainService.self)
+            .scope(.unique)
     }
 }
