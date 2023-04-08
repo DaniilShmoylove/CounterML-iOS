@@ -11,7 +11,7 @@ import SharedModels
 
 //MARK: - KeychainService protocol
 
-/// Keychain Services is a secure storage interface for macOS and iOS
+/// Keychain Services is a secure storage interface for `macOS` and `iOS`
 /// best used for small pieces of private data like passwords, cookies, and authentication tokens.
 ///
 /// - Tag: KeychainService
@@ -65,14 +65,14 @@ extension KeychainServiceImpl: KeychainService {
         
         var query: [String: AnyObject] = [
             
-            /// kSecAttrService,  kSecAttrAccount, and kSecClass
+            /// `kSecAttrService`,  `kSecAttrAccount`, and `kSecClass`
             /// uniquely identify the item to save in Keychain
             
             kSecAttrService as String: keychainData.server as AnyObject,
             kSecAttrAccount as String: keychainData.email as AnyObject,
             kSecClass as String: kSecClassGenericPassword,
             
-            /// kSecValueData is the item value to save
+            /// `kSecValueData` is the item value to save
             
             kSecValueData as String: password as AnyObject
         ]
@@ -83,7 +83,7 @@ extension KeychainServiceImpl: KeychainService {
         
         //MARK: - SecItemAdd
         
-        /// SecItemAdd attempts to add the item identified by
+        /// `SecItemAdd` attempts to add the item identified by
         /// the query to keychain
         /// SecItemAdd is used to save new items to Keychain.
         /// An item is uniquely identified by query, a `CFDictionary` that specifies the item's:
@@ -101,9 +101,9 @@ extension KeychainServiceImpl: KeychainService {
             nil
         )
         
-        /// errSecDuplicateItem is a special case where the
+        /// `errSecDuplicateItem` is a special case where the
         /// item identified by the query already exists. Throw
-        /// duplicateItem so the client can determine whether
+        /// ``KeychainError.duplicateItem`` so the client can determine whether
         /// or not to handle this as an error
         ///
         /// - Tag: ErrSecDuplicateItem
@@ -111,7 +111,7 @@ extension KeychainServiceImpl: KeychainService {
             throw KeychainError.duplicateItem
         }
         
-        /// Any status other than errSecSuccess indicates the
+        /// Any status other than `errSecSuccess` indicates the
         /// save operation failed.
         ///
         /// - Tag: ErrSecSuccess
@@ -135,7 +135,7 @@ extension KeychainServiceImpl: KeychainService {
         
         let query: [String: AnyObject] = [
             
-            /// kSecAttrService,  kSecAttrAccount, and kSecClass
+            /// `kSecAttrService`, ` kSecAttrAccount`, and `kSecClass`
             /// uniquely identify the item to update in Keychain
             
             kSecAttrService as String: keychainData.server as AnyObject,
@@ -143,14 +143,14 @@ extension KeychainServiceImpl: KeychainService {
             kSecClass as String: kSecClassGenericPassword
         ]
         
-        /// attributes is passed to SecItemUpdate with
-        /// kSecValueData as the updated item value
+        /// attributes is passed to `SecItemUpdate` with
+        /// `kSecValueData` as the updated item value
         
         let attributes: [String: AnyObject] = [
             kSecValueData as String: password as AnyObject
         ]
         
-        /// SecItemUpdate attempts to update the item identified
+        /// `SecItemUpdate` attempts to update the item identified
         /// by query, overriding the previous value
         
         let status = SecItemUpdate(
@@ -158,8 +158,8 @@ extension KeychainServiceImpl: KeychainService {
             attributes as CFDictionary
         )
         
-        /// errSecItemNotFound is a special status indicating the
-        /// item to update does not exist. Throw itemNotFound so
+        /// `errSecItemNotFound` is a special status indicating the
+        /// item to update does not exist. Throw ``KeychainError.itemNotFound`` so
         /// the client can determine whether or not to handle
         /// this as an error
         
@@ -167,7 +167,7 @@ extension KeychainServiceImpl: KeychainService {
             throw KeychainError.itemNotFound
         }
         
-        /// Any status other than errSecSuccess indicates the
+        /// Any status other than `errSecSuccess` indicates the
         /// update operation failed.
         
         guard status == errSecSuccess else {
@@ -183,25 +183,25 @@ extension KeychainServiceImpl: KeychainService {
     ) throws -> Data {
         let query: [String: AnyObject] = [
             
-            /// kSecAttrService,  kSecAttrAccount, and kSecClass
+            /// `kSecAttrService`,  `kSecAttrAccount`, and `kSecClass`
             /// uniquely identify the item to read in Keychain
             
             kSecAttrService as String: keychainData.server as AnyObject,
             kSecAttrAccount as String: keychainData.email as AnyObject,
             kSecClass as String: kSecClassGenericPassword,
             
-            /// kSecMatchLimitOne indicates keychain should read
+            /// `kSecMatchLimitOne` indicates keychain should read
             /// only the most recent item matching this query
             
             kSecMatchLimit as String: kSecMatchLimitOne,
             
-            /// kSecReturnData is set to kCFBooleanTrue in order
+            /// `kSecReturnData` is set to `kCFBooleanTrue` in order
             /// to retrieve the data for the item
             
             kSecReturnData as String: kCFBooleanTrue
         ]
         
-        /// SecItemCopyMatching will attempt to copy the item
+        /// `SecItemCopyMatching` will attempt to copy the item
         /// identified by query to the reference itemCopy
         
         var itemCopy: AnyObject?
@@ -210,8 +210,8 @@ extension KeychainServiceImpl: KeychainService {
             &itemCopy
         )
         
-        /// errSecItemNotFound is a special status indicating the
-        /// read item does not exist. Throw itemNotFound so the
+        /// `errSecItemNotFound` is a special status indicating the
+        /// read item does not exist. Throw ``KeychainService.itemNotFound`` so the
         /// client can determine whether or not to handle
         /// this case
         
@@ -219,7 +219,7 @@ extension KeychainServiceImpl: KeychainService {
             throw KeychainError.itemNotFound
         }
         
-        /// Any status other than errSecSuccess indicates the
+        /// Any status other than `errSecSuccess` indicates the
         /// read operation failed.
         
         guard status == errSecSuccess else {

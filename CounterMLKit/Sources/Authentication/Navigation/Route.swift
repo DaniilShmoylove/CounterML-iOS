@@ -10,6 +10,5 @@ import Foundation
 //MARK: - Navigation
 
 enum Route: Hashable {
-    case signUp
-    case setUpCredential 
+    case signUp, support, terms
 }

@@ -9,6 +9,9 @@ import Foundation
 
 //MARK: - Sign credential
 
+/// A structure that stores authentication credentials
+///
+/// - Tag: SignCredential
 public struct SignCredential {
     public init() { }
     
@@ -19,6 +22,7 @@ public struct SignCredential {
     
     //MARK: - Server
     
+    /// - Tag: Server
     public let server = "Nutrition.com"
 }
 
@@ -47,15 +51,15 @@ public extension SignCredential {
     /// Check password validation
     ///
     /// > `Rules`
-    /// > 1. least one uppercase,
+    /// > 1. least one uppercase
     /// > 2. least one digit
     /// > 3. least one lowercase
     /// > 4. least one symbol
-    /// > 5. min 8 characters total
+    /// > 5. min 6 characters total
     ///
     /// - Tag: IsValidPassword
     var isValidPassword: Bool {
-        let passwordRegEx = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&<>*~:`-]).{6,}$"
+        let passwordRegEx = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()\\-_=+{}|?>.<,:;~`’]{6,}$"
         let passwordPred = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
         return passwordPred.evaluate(with: self.password)
     }

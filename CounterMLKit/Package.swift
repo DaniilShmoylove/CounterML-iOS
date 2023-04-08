@@ -31,7 +31,9 @@ let package = Package(
             name: "Authentication",
             targets: [
                 "Services",
+                "SharedModels",
                 "CoreUI",
+                "Helpers",
             ]),
         .library(
             name: "Services",
@@ -65,6 +67,12 @@ let package = Package(
         .target(
             name: "CounterMLKit",
             dependencies: [
+                "Core",
+                "CoreUI",
+                "Services",
+                "SharedModels",
+                "Helpers",
+                "Authentication",
                 .product(name: "Resolver", package: "Resolver"),
             ]),
         .target(name: "Core"),
@@ -72,11 +80,19 @@ let package = Package(
         .target(
             name: "Services",
             dependencies: [
-                .product(name: "Resolver", package: "Resolver")
+                .product(name: "Resolver", package: "Resolver"),
             ]),
         .target(name: "SharedModels"),
-        .target(name: "Helpers"),
+        .target(name: "Helpers", dependencies: [
+            "Services",
+            "SharedModels",
+            .product(name: "Resolver", package: "Resolver"),
+        ]),
         .target(name: "Authentication", dependencies: [
+            "Services",
+            "SharedModels",
+            "CoreUI",
+            "Helpers",
             .product(name: "Resolver", package: "Resolver"),
         ]),
         .testTarget(

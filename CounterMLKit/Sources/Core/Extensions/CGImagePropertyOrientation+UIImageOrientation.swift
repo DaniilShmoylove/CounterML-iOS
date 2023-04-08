@@ -5,7 +5,8 @@
 //  Created by Daniil Shmoylove on 18.01.2023.
 //
 
-import SwiftUI
+#if canImport(UIKit)
+import UIKit
 import ImageIO
 
 public extension CGImagePropertyOrientation {
@@ -18,7 +19,6 @@ public extension CGImagePropertyOrientation {
      - Tag: ConvertOrientation
      */
     
-#if canImport(UIKit)
     init(_ uiOrientation: UIImage.Orientation) {
         switch uiOrientation {
         case .up: self = .up
@@ -32,5 +32,5 @@ public extension CGImagePropertyOrientation {
         @unknown default: fatalError()
         }
     }
-#endif
 }
+#endif

@@ -10,19 +10,25 @@ import SwiftUI
 //MARK: - LargeBorderButtonStyle
 
 public struct LargeBorderButtonStyle: ButtonStyle {
-    public init() { }
+    public init(_ tint: Color) {
+        self.tint = tint
+    }
+    
+    let tint: Color
     
     public func makeBody(
         configuration: ButtonStyle.Configuration
     ) -> some View {
-        LargeBorderButtonView(configuration: configuration)
+        LargeBorderButtonView(configuration: configuration, color: tint)
     }
 }
 
 //MARK: - Typealias
 
 public extension ButtonStyle where Self == LargeBorderButtonStyle {
-    static var largeBorder: LargeBorderButtonStyle { LargeBorderButtonStyle() }
+    static func largeBorder(
+        _ tint: Color = .accentColor
+    ) -> LargeBorderButtonStyle { LargeBorderButtonStyle(tint) }
 }
 
 private extension LargeBorderButtonStyle {
@@ -31,6 +37,7 @@ private extension LargeBorderButtonStyle {
     
     private struct LargeBorderButtonView: View {
         let configuration: ButtonStyle.Configuration
+        let color: Color
         
         @Environment(\.isEnabled) private var isEnabled: Bool
         
@@ -39,9 +46,9 @@ private extension LargeBorderButtonStyle {
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity)
                 .frame(height: 54)
-                .background(self.isEnabled ? Color.accentColor : .secondary.opacity(0.5))
+                .background(color)
                 .animation(.default, value: self.isEnabled)
-                .clipShape(Capsule())
+                .cornerRadius(16)
             
                 .scaleEffect(self.configuration.isPressed ? 0.85 : 1.0)
                 .animation(

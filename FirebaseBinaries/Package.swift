@@ -5,6 +5,10 @@ import PackageDescription
 
 let package = Package(
     name: "FirebaseBinaries",
+    platforms: [
+        .iOS(.v16),
+        .macOS(.v13)
+    ],
     products: [
         .library(
             name: "FirebaseBinaries",
@@ -40,7 +44,6 @@ let package = Package(
                 "AppAuth",
                 "GoogleSignIn",
                 "GTMAppAuth",
-//                "GTMSessionFetcher",
             ])
     ],
     targets: [
@@ -74,7 +77,6 @@ let package = Package(
         
         .binaryTarget(name: "AppAuth", path: "Frameworks/GoogleSignIn/AppAuth.xcframework"),
         .binaryTarget(name: "GoogleSignIn", path: "Frameworks/GoogleSignIn/GoogleSignIn.xcframework"),
-        .binaryTarget(name: "GTMAppAuth", path: "Frameworks/GoogleSignIn/GTMAppAuth.xcframework"),
-//        .binaryTarget(name: "GTMSessionFetcher", path: "Frameworks/GoogleSignIn/GTMSessionFetcher.xcframework"),
+        .binaryTarget(name: "GTMAppAuth", path: "Frameworks/GoogleSignIn/GTMAppAuth.xcframework")
     ]
 )

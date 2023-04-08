@@ -11,12 +11,14 @@ import SharedModels
 //MARK: - PersistenceContainer
 
 /// A  global container that encapsulates the Core Data stack in app.
+///
 /// - Tag: PersistenceContainer
 final public class PersistenceContainer {
     
     //MARK: - Singleton
     
     /// Singleton
+    ///
     /// - Tag: Shared
     public static let shared = PersistenceContainer()
     
@@ -28,6 +30,7 @@ final public class PersistenceContainer {
     //MARK: - Context
     
     /// An object space to manipulate and track changes to managed objects.
+    ///
     /// - Tag: ViewContext
     public let viewContext: NSManagedObjectContext
     
@@ -69,6 +72,7 @@ extension PersistenceContainer {
     //MARK: - Save current context
     
     /// Attempts to commit unsaved changes to registered objects to the context’s parent store.
+    ///
     /// - Tag: SaveContext
     public func saveContext() {
         let context = self.container.viewContext
