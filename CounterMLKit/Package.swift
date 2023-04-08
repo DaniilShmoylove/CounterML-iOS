@@ -23,9 +23,18 @@ let package = Package(
                 "Services",
                 "SharedModels",
                 "Helpers",
+                "Authentication"
             ]),
         .library(name: "Core", targets: ["Core"]),
         .library(name: "CoreUI", targets: ["CoreUI"]),
+        .library(
+            name: "Authentication",
+            targets: [
+                "Services",
+                "SharedModels",
+                "CoreUI",
+                "Helpers",
+            ]),
         .library(
             name: "Services",
             targets: [
@@ -42,7 +51,7 @@ let package = Package(
     
     dependencies: [
         
-        //An ultralight Dependency Injection / Service Locator framework for Swift 5.x on iOS.
+        /// An ultralight Dependency Injection / Service Locator framework for Swift 5.x on iOS.
         
         .package(
             url: "https://github.com/hmlongco/Resolver",
@@ -58,17 +67,34 @@ let package = Package(
         .target(
             name: "CounterMLKit",
             dependencies: [
-                "Resolver"
+                "Core",
+                "CoreUI",
+                "Services",
+                "SharedModels",
+                "Helpers",
+                "Authentication",
+                .product(name: "Resolver", package: "Resolver"),
             ]),
         .target(name: "Core"),
         .target(name: "CoreUI"),
         .target(
             name: "Services",
             dependencies: [
-                "Resolver"
+                .product(name: "Resolver", package: "Resolver"),
             ]),
         .target(name: "SharedModels"),
-        .target(name: "Helpers"),
+        .target(name: "Helpers", dependencies: [
+            "Services",
+            "SharedModels",
+            .product(name: "Resolver", package: "Resolver"),
+        ]),
+        .target(name: "Authentication", dependencies: [
+            "Services",
+            "SharedModels",
+            "CoreUI",
+            "Helpers",
+            .product(name: "Resolver", package: "Resolver"),
+        ]),
         .testTarget(
             name: "CounterMLKitTests",
             dependencies: ["CounterMLKit"]),

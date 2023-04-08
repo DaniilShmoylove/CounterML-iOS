@@ -45,20 +45,6 @@ public extension ClassificationEntity {
         return request
     }
     
-    //MARK: - Download classification data
-    
-    /// Download `[ClassificationEntity]` data into a persistent store.
-    ///
-    /// - Parameters:
-    ///    - data: Collection of data that is requested from the server
-    ///
-    /// - Tag: Download
-    static func download(
-        _ data: [ClassificationModel]
-    ) throws {
-        //TODO: - Download data into a persistent store.
-    }
-    
     //MARK: - Classification
     
     /// Сonverts data from `ClassificationEntity` to `ClassificationModel`

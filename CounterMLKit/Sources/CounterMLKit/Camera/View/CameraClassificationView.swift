@@ -29,7 +29,6 @@ struct CameraClassificationView: View {
             )
         }
         .ignoresSafeArea()
-        .navigationBarTitleDisplayMode(.inline)
         
         //MARK: - Camera prompt
         

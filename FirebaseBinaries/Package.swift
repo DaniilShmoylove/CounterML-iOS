@@ -5,6 +5,10 @@ import PackageDescription
 
 let package = Package(
     name: "FirebaseBinaries",
+    platforms: [
+        .iOS(.v16),
+        .macOS(.v13)
+    ],
     products: [
         .library(
             name: "FirebaseBinaries",
@@ -33,6 +37,13 @@ let package = Package(
                 "gRPC-Core",
                 "leveldb-library",
                 "Libuv-gRPC",
+                
+                "FirebaseAuth",
+                "GTMSessionFetcher",
+                
+                "AppAuth",
+                "GoogleSignIn",
+                "GTMAppAuth",
             ])
     ],
     targets: [
@@ -60,5 +71,12 @@ let package = Package(
         .binaryTarget(name: "gRPC-Core", path: "Frameworks/FirebaseFirestore/gRPC-Core.xcframework"),
         .binaryTarget(name: "leveldb-library", path: "Frameworks/FirebaseFirestore/leveldb-library.xcframework"),
         .binaryTarget(name: "Libuv-gRPC", path: "Frameworks/FirebaseFirestore/Libuv-gRPC.xcframework"),
+        
+        .binaryTarget(name: "FirebaseAuth", path: "Frameworks/FirebaseAuth/FirebaseAuth.xcframework"),
+        .binaryTarget(name: "GTMSessionFetcher", path: "Frameworks/FirebaseAuth/GTMSessionFetcher.xcframework"),
+        
+        .binaryTarget(name: "AppAuth", path: "Frameworks/GoogleSignIn/AppAuth.xcframework"),
+        .binaryTarget(name: "GoogleSignIn", path: "Frameworks/GoogleSignIn/GoogleSignIn.xcframework"),
+        .binaryTarget(name: "GTMAppAuth", path: "Frameworks/GoogleSignIn/GTMAppAuth.xcframework")
     ]
 )

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreUI
 
 public struct CounterView: View {
     @ObservedObject private var coordinator = Coordinator()
@@ -15,6 +16,7 @@ public struct CounterView: View {
     public var body: some View {
         NavigationStack(path: self.$coordinator.path) {
             List { }
+                .navigationTitle("Today")
             
             //MARK: - Toolbar
             
@@ -40,14 +42,13 @@ public struct CounterView: View {
         
 #if os(iOS)
         .tint(self.coordinator.path.last == .addItem ? .white : .accentColor)
-        .statusBarHidden(self.coordinator.path.last == .addItem)
+//        .statusBarHidden(self.coordinator.path.last == .addItem)
         .animation(.default, value: self.coordinator.path.last == .addItem)
 #endif 
         
         //MARK: - Environments
         
         .environmentObject(self.coordinator)
-        
     }
 }
 

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-//MARK: - View modifier
+//MARK: - ViewModifier
 
 public extension View {
     func rotatableAnimation() -> some View {

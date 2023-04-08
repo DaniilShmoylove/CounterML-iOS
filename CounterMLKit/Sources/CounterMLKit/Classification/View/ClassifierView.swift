@@ -86,13 +86,13 @@ extension ClassifierView {
         Section {
             TextField("Dish", text: self.$data.name)
                 .focused(self.$focusedField, equals: .dish)
-                .font(.system(size: 22, weight: .bold))
+                .font(.system(size: 22, weight: .bold, design: .rounded))
                 .submitLabel(.next)
                 .onSubmit { self.focusedField = .weight }
             
             if let description = self.data.description {
                 Text(description)
-                    .font(.footnote)
+                    .font(.system(.footnote, design: .rounded))
                     .foregroundColor(.secondary)
             }
         }
@@ -145,9 +145,11 @@ extension ClassifierView {
         Section {
             Toggle(isOn: .constant(true)) {
                 Text("Count automatically")
+                    .font(.system(.body, design: .rounded))
             }
         } footer: {
             Text("If you turn on the \"Count automatically\" toggle switch, then automatic calorie, carbs, protein, fat counting will be performed depending on weight.")
+                .font(.system(.footnote, design: .rounded))
         }
     }
     
@@ -160,7 +162,7 @@ extension ClassifierView {
             } label: {
                 Image(systemName: "heart")
                     .foregroundColor(.primary)
-                    .font(.system(size: 16, weight: .semibold))
+                    .font(.system(size: 16, weight: .semibold, design: .rounded))
                     .frame(width: 48, height: 48)
                     .background(Color(uiColor: .secondarySystemGroupedBackground))
                     .clipShape(Circle())
@@ -172,7 +174,7 @@ extension ClassifierView {
             } label: {
                 Text("Save")
                     .foregroundColor(.white)
-                    .font(.system(size: 16, weight: .semibold))
+                    .font(.system(size: 16, weight: .semibold, design: .rounded))
                     .frame(minWidth: 128, idealWidth: 196, maxWidth: 384)
                     .frame(height: 48)
                     .background(Color.accentColor)
