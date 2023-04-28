@@ -18,14 +18,15 @@ public struct AuthenticationView: View {
             alignment: .center,
             spacing: 18
         ) {
-            Image("logo_art")
+            Image("app_art_2")
                 .resizable()
-                .scaledToFill()
+                .scaledToFit()
                 .bouncedAppearance(0.3)
                 .pulsate(scale: (1.075, 0.925), duration: 2.75)
                 .padding()
             
-            Text("\nFocus on\nyour nutrition.")
+            Spacer()
+            Text("Focus on\nyour nutrition.")
                 .font(.system(size: 36, weight: .black, design: .rounded))
                 .multilineTextAlignment(.center)
                 .bouncedAppearance(0.2)
@@ -33,7 +34,7 @@ public struct AuthenticationView: View {
             
             Text("Log in to have personalized access\non all devices")
                 .foregroundColor(.secondary)
-                .font(.system(size: 16, weight: .regular, design: .rounded))
+                .font(.system(size: 18, weight: .regular, design: .rounded))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 32)
                 .bouncedAppearance(0.15)

@@ -25,7 +25,7 @@ struct AppView: View {
     #if os(macOS)
                 SidebarCounterView()
     #else
-                self.tabView
+                CounterView()
                     .overlay {
                         Button("Sign out") {
                             do {
@@ -47,15 +47,6 @@ struct AppView: View {
         .animation(.default, value: Auth.auth().currentUser == nil)
         
         .onAppear { self.sessionListener.startListener() }
-    }
-
-    private var tabView: some View {
-        TabView {
-            CounterView()
-                .tabItem {
-                    Label("Today", systemImage: "calendar")
-                }
-        }
     }
 }
 

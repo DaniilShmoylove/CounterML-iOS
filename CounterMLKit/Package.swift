@@ -23,8 +23,10 @@ let package = Package(
                 "Services",
                 "SharedModels",
                 "Helpers",
+                "Today",
                 "Authentication"
             ]),
+        .library(name: "Today", targets: ["Today"]),
         .library(name: "Core", targets: ["Core"]),
         .library(name: "CoreUI", targets: ["CoreUI"]),
         .library(
@@ -75,6 +77,12 @@ let package = Package(
                 "Authentication",
                 .product(name: "Resolver", package: "Resolver"),
             ]),
+        .target(name: "Today", dependencies: [
+            "CoreUI",
+            "Services",
+            "SharedModels",
+            .product(name: "Resolver", package: "Resolver"),
+        ]),
         .target(name: "Core"),
         .target(name: "CoreUI"),
         .target(

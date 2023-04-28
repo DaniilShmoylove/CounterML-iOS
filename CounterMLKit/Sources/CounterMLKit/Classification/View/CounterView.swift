@@ -7,48 +7,34 @@
 
 import SwiftUI
 import CoreUI
+import Today
 
 public struct CounterView: View {
-    @ObservedObject private var coordinator = Coordinator()
-    
     public init() { }
     
     public var body: some View {
-        NavigationStack(path: self.$coordinator.path) {
-            List { }
-                .navigationTitle("Today")
+        TabView {
             
-            //MARK: - Toolbar
-            
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    NavigationLink(value: Route.addItem) {
-                        Image(systemName: "square.and.pencil")
-                    }
+            TodayView()
+                .tabItem {
+                    Label("Today", systemImage: "calendar")
                 }
-            }
             
-            //MARK: - Destinations
+//            Text("Weight")
+//                .tabItem {
+//                    Label("Weight", systemImage: "figure.stand")
+//                }
             
-            .navigationDestination(for: Route.self) { route in
-                switch route {
-                case .addItem:
-#if canImport(UIKit)
-                    CameraClassificationView()
-#endif
+            Text("Charts")
+                .tabItem {
+                    Label("Charts", systemImage: "chart.bar.fill")
                 }
-            }
+            
+            Text("Settings")
+                .tabItem {
+                    Label("Settings", systemImage: "gearshape.fill")
+                }
         }
-        
-#if os(iOS)
-        .tint(self.coordinator.path.last == .addItem ? .white : .accentColor)
-//        .statusBarHidden(self.coordinator.path.last == .addItem)
-        .animation(.default, value: self.coordinator.path.last == .addItem)
-#endif 
-        
-        //MARK: - Environments
-        
-        .environmentObject(self.coordinator)
     }
 }
 

@@ -12,13 +12,12 @@ import Foundation
 /// This model is used to classify a dish and store it.
 /// 
 /// - Tag: ClassificationModel
-public struct ClassificationModel: Identifiable, Codable {
+public struct ClassificationModel: Hashable, Identifiable, Codable, Equatable {
     
     //MARK: - Empty init
     
     public init(imageData: Data? = nil) {
         self.imageData = imageData
-        self.weight = 100
         self.name = .init()
         self.description = nil
         self.calories = .init()
@@ -31,7 +30,6 @@ public struct ClassificationModel: Identifiable, Codable {
     
     public var id: Data? { self.imageData }
     public var imageData: Data?
-    public var weight: Int?
     public var name: String
     public var description: String?
     public var calories: Int
@@ -72,5 +70,15 @@ public struct ClassificationModel: Identifiable, Codable {
         try container.encode(self.carbs, forKey: .carbs)
         try container.encode(self.fat, forKey: .fat)
         try container.encode(self.protein, forKey: .protein)
+    }
+    
+    public static func == (lhs: ClassificationModel, rhs: ClassificationModel) -> Bool {
+        return lhs.imageData == rhs.imageData &&
+        lhs.name == rhs.name &&
+        lhs.description == rhs.description &&
+        lhs.calories == rhs.calories &&
+        lhs.carbs == rhs.carbs &&
+        lhs.fat == rhs.fat &&
+        lhs.protein == rhs.protein
     }
 }

@@ -79,7 +79,6 @@ extension SignUpView {
             .padding(.horizontal, 24)
             .frame(height: 54)
             .background(Color(uiColor: .secondarySystemBackground))
-//            .clipShape(Capsule())
             .cornerRadius(15)
             
             HStack {
@@ -91,14 +90,13 @@ extension SignUpView {
                     .textContentType(.newPassword)
                     .submitLabel(.continue)
                     .onSubmit { self.viewModel.signUp(credential: self.signCredential) }
-//
+
                 CircleMarkView(self.signCredential.isValidPassword)
             }
             .font(.system(size: 16, weight: .medium, design: .rounded))
             .padding(.horizontal, 24)
             .frame(height: 54)
             .background(Color(uiColor: .secondarySystemBackground))
-//            .clipShape(Capsule())
             .cornerRadius(15)
         }
         .bouncedAppearance(0.3)

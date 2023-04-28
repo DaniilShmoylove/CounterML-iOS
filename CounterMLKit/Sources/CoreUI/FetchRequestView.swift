@@ -36,7 +36,7 @@ public struct FetchRequestView<
     ///
     /// - Tag: FetchRequest
     @FetchRequest private var fetchRequest: FetchedResults<T>
-    
+
     /// this is our content closure; we'll call this once the fetch results is available
     ///
     /// - Tag: Content

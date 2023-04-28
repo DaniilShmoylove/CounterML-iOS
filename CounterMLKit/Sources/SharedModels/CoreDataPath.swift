@@ -17,9 +17,12 @@ public enum CoreDataPath {
     
     public static let modelName: String = "CounterModel"
     
-    //MARK: - Entity name
+    //MARK: - Entities
     
-    public static let entityName: String = "ClassificationEntity"
+    public enum Entities {
+        public static let classification: String = "ClassificationEntity"
+        public static let meal: String = "MealEntity"
+    }
     
     //MARK: - Model url
     

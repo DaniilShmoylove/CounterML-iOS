@@ -25,7 +25,7 @@ public extension ClassificationEntity {
         _ predicateString: String
     ) -> NSFetchRequest<ClassificationEntity> {
         let request = NSFetchRequest<ClassificationEntity>(
-            entityName: CoreDataPath.entityName
+            entityName: CoreDataPath.Entities.classification
         )
         
         let format = "name BEGINSWITH %@"
@@ -69,5 +69,11 @@ public extension ClassificationEntity {
             self.fat = Int16(newValue.fat)
             self.protein = Int16(newValue.protein)
         }
+    }
+}
+
+public extension ClassificationEntity {
+    func addMock() {
+        
     }
 }

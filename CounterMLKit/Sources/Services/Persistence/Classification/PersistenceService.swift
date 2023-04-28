@@ -14,6 +14,7 @@ import Resolver
 
 /// Service that provides an API for managing a `CoreData`
 /// The main task of the class is to receive, save, search for classification data
+/// `Classification`data is the data on which the classification object is searched.
 /// 
 /// - Tag: PersistenceService
 public protocol ClassificationPersistenceService {
@@ -59,7 +60,7 @@ extension ClassificationPersistenceServiceImpl: ClassificationPersistenceService
         _ predicateString: String
     ) async throws -> ClassificationEntity? {
         let request = NSFetchRequest<ClassificationEntity>(
-            entityName: CoreDataPath.entityName
+            entityName: CoreDataPath.Entities.classification
         )
         
         let format = "name BEGINSWITH %@"
@@ -113,7 +114,7 @@ extension ClassificationPersistenceServiceImpl: ClassificationPersistenceService
     /// - Tag: IsNonDataUploaded
     public var isNonDataUploaded: Bool {
         let request = NSFetchRequest<ClassificationEntity>(
-            entityName: CoreDataPath.entityName
+            entityName: CoreDataPath.Entities.classification
         )
         
         let count = try? self.container.viewContext.count(for: request)

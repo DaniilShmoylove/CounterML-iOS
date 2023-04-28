@@ -80,5 +80,10 @@ extension Resolver: ResolverRegistering {
         register { KeychainServiceImpl() }
             .implements(KeychainService.self)
             .scope(.unique)
+        
+        //MARK: - MealPersistenceService protocol
+        
+        register { MealPersistenceServiceImpl() }
+            .implements(MealPersistenceService.self)
     }
 }

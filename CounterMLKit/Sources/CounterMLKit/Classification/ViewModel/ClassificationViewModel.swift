@@ -18,6 +18,7 @@ import CoreData
 
 /// This is the class that interacts with the camera and the classification model.
 /// The main task of the class is to provide the captured data to the CoreML model.
+/// 
 /// - Tag: ClassificationViewModel
 final class ClassificationViewModel: ObservableObject {
     
