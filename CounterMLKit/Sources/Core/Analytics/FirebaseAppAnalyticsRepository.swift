@@ -7,7 +7,9 @@
 
 import FirebaseAnalytics
 
-final class FirebaseAppAnalyticsRepository: AppAnalyticsProvider {
+final public class FirebaseAppAnalyticsRepository: AppAnalyticsProvider {
+    public init() { }
+    
     public func log(
         _ event: Event
     ) {

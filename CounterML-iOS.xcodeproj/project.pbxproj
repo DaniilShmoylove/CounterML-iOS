@@ -18,9 +18,6 @@
 		A5A1449B2974BAF6006561A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5A1449A2974BAF6006561A8 /* Assets.xcassets */; };
 		A5A1449F2974BAF6006561A8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5A1449E2974BAF6006561A8 /* Preview Assets.xcassets */; };
 		A5C591702975E6CB00D422B6 /* CounterMLKit in Frameworks */ = {isa = PBXBuildFile; productRef = A5C5916F2975E6CB00D422B6 /* CounterMLKit */; };
-		FBFB1F882BFA777300CEFA5F /* AppAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFB1F872BFA777300CEFA5F /* AppAnalytics.swift */; };
-		FBFB1F8B2BFA77C500CEFA5F /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFB1F8A2BFA77C500CEFA5F /* Event.swift */; };
-		FBFB1F8D2BFA7BAC00CEFA5F /* FirebaseAppAnalyticsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFB1F8C2BFA7BAC00CEFA5F /* FirebaseAppAnalyticsRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,9 +48,6 @@
 		A5A1449C2974BAF6006561A8 /* CounterML_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CounterML_iOS.entitlements; sourceTree = "<group>"; };
 		A5A1449E2974BAF6006561A8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A5C5916D2975E6BD00D422B6 /* CounterMLKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = CounterMLKit; sourceTree = "<group>"; };
-		FBFB1F872BFA777300CEFA5F /* AppAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAnalytics.swift; sourceTree = "<group>"; };
-		FBFB1F8A2BFA77C500CEFA5F /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		FBFB1F8C2BFA7BAC00CEFA5F /* FirebaseAppAnalyticsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAppAnalyticsRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +76,6 @@
 		A536F4312979EC18007380E3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FBFB1F892BFA77B300CEFA5F /* Analytics */,
 				A50765D929A6446A00E4AE8A /* GoogleService-Info.plist */,
 				A5A1449A2974BAF6006561A8 /* Assets.xcassets */,
 				A536F42E29799622007380E3 /* ResolverRegistering.swift */,
@@ -145,16 +138,6 @@
 				A536E24629A6343E005A3ABE /* libc++.tbd */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		FBFB1F892BFA77B300CEFA5F /* Analytics */ = {
-			isa = PBXGroup;
-			children = (
-				FBFB1F872BFA777300CEFA5F /* AppAnalytics.swift */,
-				FBFB1F8A2BFA77C500CEFA5F /* Event.swift */,
-				FBFB1F8C2BFA7BAC00CEFA5F /* FirebaseAppAnalyticsRepository.swift */,
-			);
-			path = Analytics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,9 +222,6 @@
 				A536F42F29799622007380E3 /* ResolverRegistering.swift in Sources */,
 				A5A144972974BAF4006561A8 /* CounterApp.swift in Sources */,
 				A53957E729B1E47100C273A8 /* AppView.swift in Sources */,
-				FBFB1F8D2BFA7BAC00CEFA5F /* FirebaseAppAnalyticsRepository.swift in Sources */,
-				FBFB1F882BFA777300CEFA5F /* AppAnalytics.swift in Sources */,
-				FBFB1F8B2BFA77C500CEFA5F /* Event.swift in Sources */,
 				A536F437297B5A1E007380E3 /* NSAppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

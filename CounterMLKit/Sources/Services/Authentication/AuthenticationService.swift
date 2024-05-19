@@ -10,10 +10,8 @@ import FirebaseCore
 import SharedModels
 import Core
 import GoogleSignIn
-
-#if canImport(FirebaseAuth)
+import os
 import FirebaseAuth
-#endif
 
 //MARK: - AuthenticationService protocol
 
@@ -63,16 +61,28 @@ extension AuthenticationServiceImpl: AuthenticationService {
         guard
             let windowScene = scenes.first as? UIWindowScene,
             let viewController = windowScene.windows.first?.rootViewController
-        else { return }
+        else {
+            Logger.authentication.fault("signInWithGoogle windowScene \(windowScene), viewController \(viewController)")
+            
+            return
+        }
 #else
         guard
             let keyWindow = NSApplication.shared.keyWindow
-        else { return }
+        else {
+            Logger.authentication.fault("signInWithGoogle keyWindow is nil")
+            
+            return
+        }
 #endif
         
         guard
             let clientID = FirebaseApp.app()?.options.clientID
-        else { return }
+        else {
+            Logger.authentication.fault("signInWithGoogle clientID is nil")
+            
+            return
+        }
         
         /// Set active configuration for this instance of GIDSignIn.
         
@@ -95,7 +105,11 @@ extension AuthenticationServiceImpl: AuthenticationService {
             
             guard
                 let idToken = result.user.idToken?.tokenString
-            else { return }
+            else {
+                Logger.authentication.fault("signInWithGoogle idToken is nil")
+                
+                return
+            }
             
             /// Create google credential
             
@@ -106,10 +120,14 @@ extension AuthenticationServiceImpl: AuthenticationService {
             
             self.credential = credential
             
+            Logger.authentication.info("signInWithGoogle credential created \(credential)")
+            
             /// authenticate
             
             try await self.authenticate()
         } catch {
+            Logger.authentication.error("signInWithGoogle error: \(error.localizedDescription)")
+            
             throw error
         }
     }
@@ -119,16 +137,24 @@ extension AuthenticationServiceImpl: AuthenticationService {
     /// This method creates credentials for `Email & Password`
     ///
     /// - Tag: SignIn
-    public func signIn(_ signCredential: SignCredential) async throws {
+    public func signIn(
+        _ signCredential: SignCredential
+    ) async throws {
         do {
-            self.credential = EmailAuthProvider
+            let credential = EmailAuthProvider
                 .credential(
                     withEmail: signCredential.email,
                     password: signCredential.password
                 )
             
+            self.credential = credential
+            
+            Logger.authentication.info("\(#function) with email credential created \(credential)")
+            
             try await self.authenticate()
         } catch {
+            Logger.authentication.error("\(#function) error: \(error.localizedDescription)")
+            
             throw error
         }
     }
@@ -149,8 +175,13 @@ extension AuthenticationServiceImpl: AuthenticationService {
         
         do {
             let result = try await Auth.auth().signIn(with: credential)
+            
+            Logger.authentication.info("The user authenticate data result \(result)")
+            
             return result
         } catch {
+            Logger.authentication.error("authenticate error: \(error.localizedDescription)")
+            
             throw error
         }
     }
@@ -163,7 +194,9 @@ extension AuthenticationServiceImpl: AuthenticationService {
     /// > When a user creates an account, his data is stored in `Keychain`.
     ///
     /// - Tag: SignUp
-    public func signUp(_ signCredential: SignCredential) async throws {
+    public func signUp(
+        _ signCredential: SignCredential
+    ) async throws {
         do {
             let result = try await Auth.auth()
                 .createUser(
@@ -173,8 +206,12 @@ extension AuthenticationServiceImpl: AuthenticationService {
             
             self.credential = result.credential
             
+            Logger.authentication.info("\(#function) data result \(result)")
+            
             try self.keychainService.save(signCredential)
         } catch {
+            Logger.authentication.error("\(#function) error: \(error.localizedDescription)")
+            
             throw error
         }
     }
@@ -185,7 +222,11 @@ extension AuthenticationServiceImpl: AuthenticationService {
     public func signOut() throws {
         do {
             try Auth.auth().signOut()
+            
+            Logger.authentication.info("User is sign out")
         } catch {
+            Logger.authentication.error("signOut error: \(error.localizedDescription)")
+            
             throw error
         }
     }

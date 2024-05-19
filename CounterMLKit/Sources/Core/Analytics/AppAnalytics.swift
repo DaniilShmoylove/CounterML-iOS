@@ -10,7 +10,7 @@ import os
 
 //MARK: - AppAnalyticsProvider protocol
 
-protocol AppAnalyticsProvider {
+public protocol AppAnalyticsProvider {
     func log(_ event: Event)
 }
 

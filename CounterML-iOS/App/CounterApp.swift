@@ -10,6 +10,7 @@ import CounterMLKit
 import Helpers
 import FirebaseCore
 import GoogleSignIn
+import Core
 
 @main
 struct CounterApp: App {

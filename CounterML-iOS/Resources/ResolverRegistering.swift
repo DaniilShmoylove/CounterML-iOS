@@ -7,6 +7,7 @@
 
 import Resolver
 import Services
+import Core
 
 //MARK: - ResolverRegistering
 
