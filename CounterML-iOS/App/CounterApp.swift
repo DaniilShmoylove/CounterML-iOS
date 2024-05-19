@@ -8,6 +8,8 @@
 import SwiftUI
 import CounterMLKit
 import Helpers
+import FirebaseCore
+import GoogleSignIn
 
 @main
 struct CounterApp: App {
@@ -22,7 +24,12 @@ struct CounterApp: App {
     var body: some Scene {
         WindowGroup {
             AppView()
+                .onOpenURL { url in
+                    GIDSignIn.sharedInstance.handle(url)
+                }
         }
+        
+#if os(iOS)
         
         //MARK: - Background task
         
@@ -32,6 +39,7 @@ struct CounterApp: App {
             BGManager.scheduleAppRefresh()
             await self.backgroundTaskManager.updateClassificationData()
         }
+#endif
         
 #if os(macOS)
         .windowResizability(.contentSize)

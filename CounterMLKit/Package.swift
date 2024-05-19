@@ -57,6 +57,10 @@ let package = Package(
             url: "https://github.com/hmlongco/Resolver",
             from: "1.5.0"
         ),
+        .package(
+            url: "https://github.com/google/GoogleSignIn-iOS",
+            from: "7.1.0"
+        )
     ],
     
     //MARK: - Targets
@@ -81,6 +85,7 @@ let package = Package(
             name: "Services",
             dependencies: [
                 .product(name: "Resolver", package: "Resolver"),
+                .product(name: "GoogleSignIn", package: "GoogleSignIn-iOS"),
             ]),
         .target(name: "SharedModels"),
         .target(name: "Helpers", dependencies: [

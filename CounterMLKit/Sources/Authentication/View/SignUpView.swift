@@ -30,7 +30,7 @@ struct SignUpView: View {
                 self.signInWithGoogleButton
             }
             .navigationTitle("Sign Up")
-            .navigationBarTitleDisplayMode(.large)
+//            .navigationBarTitleDisplayMode(.large)
             .animation(.easeIn(duration: 0.15), value: self.focusedField)
             .padding()
         }
@@ -61,15 +61,15 @@ extension SignUpView {
         VStack(spacing: 18) {
             HStack {
                 Image(systemName: "envelope")
-                    .foregroundColor(.init(uiColor: .placeholderText))
+//                    .foregroundColor(.init(uiColor: .placeholderText))
                     .frame(width: 20)
                 TextField("Email Adress", text: self.$signCredential.email)
                     .autocorrectionDisabled()
                     .focused(self.$focusedField, equals: .email)
-                    .textContentType(.emailAddress)
-                    .keyboardType(.emailAddress)
-                    .submitLabel(.next)
-                    .textInputAutocapitalization(.never)
+//                    .textContentType(.emailAddress)
+//                    .keyboardType(.emailAddress)
+//                    .submitLabel(.next)
+//                    .textInputAutocapitalization(.never)
                     .autocorrectionDisabled()
                     .onSubmit { self.focusedField = .password }
 
@@ -78,17 +78,17 @@ extension SignUpView {
             .font(.system(size: 16, weight: .semibold, design: .rounded))
             .padding(.horizontal, 24)
             .frame(height: 54)
-            .background(Color(uiColor: .secondarySystemBackground))
+//            .background(Color(uiColor: .secondarySystemBackground))
 //            .clipShape(Capsule())
             .cornerRadius(15)
             
             HStack {
                 Image(systemName: "lock")
-                    .foregroundColor(.init(uiColor: .placeholderText))
+//                    .foregroundColor(.init(uiColor: .placeholderText))
                     .frame(width: 20)
                 SecureField("Password", text: self.$signCredential.password)
                     .focused(self.$focusedField, equals: .password)
-                    .textContentType(.newPassword)
+//                    .textContentType(.newPassword)
                     .submitLabel(.continue)
                     .onSubmit { self.viewModel.signUp(credential: self.signCredential) }
 //
@@ -97,7 +97,7 @@ extension SignUpView {
             .font(.system(size: 16, weight: .medium, design: .rounded))
             .padding(.horizontal, 24)
             .frame(height: 54)
-            .background(Color(uiColor: .secondarySystemBackground))
+//            .background(Color(uiColor: .secondarySystemBackground))
 //            .clipShape(Capsule())
             .cornerRadius(15)
         }

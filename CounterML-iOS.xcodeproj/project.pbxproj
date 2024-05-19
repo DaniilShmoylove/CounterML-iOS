@@ -14,7 +14,6 @@
 		A536F434297B5894007380E3 /* UIAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A536F433297B5894007380E3 /* UIAppDelegate.swift */; };
 		A536F437297B5A1E007380E3 /* NSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A536F436297B5A1E007380E3 /* NSAppDelegate.swift */; };
 		A53957E729B1E47100C273A8 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53957E629B1E47100C273A8 /* AppView.swift */; };
-		A588029F29D81DD200EA9EE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A588029E29D81DD200EA9EE5 /* LaunchScreen.storyboard */; };
 		A5A144972974BAF4006561A8 /* CounterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A144962974BAF4006561A8 /* CounterApp.swift */; };
 		A5A1449B2974BAF6006561A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5A1449A2974BAF6006561A8 /* Assets.xcassets */; };
 		A5A1449F2974BAF6006561A8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5A1449E2974BAF6006561A8 /* Preview Assets.xcassets */; };
@@ -43,7 +42,6 @@
 		A536F433297B5894007380E3 /* UIAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAppDelegate.swift; sourceTree = "<group>"; };
 		A536F436297B5A1E007380E3 /* NSAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAppDelegate.swift; sourceTree = "<group>"; };
 		A53957E629B1E47100C273A8 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
-		A588029E29D81DD200EA9EE5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5A144932974BAF4006561A8 /* CounterML-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CounterML-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5A144962974BAF4006561A8 /* CounterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterApp.swift; sourceTree = "<group>"; };
 		A5A1449A2974BAF6006561A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,7 +76,6 @@
 		A536F4312979EC18007380E3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A588029E29D81DD200EA9EE5 /* LaunchScreen.storyboard */,
 				A50765D929A6446A00E4AE8A /* GoogleService-Info.plist */,
 				A5A1449A2974BAF6006561A8 /* Assets.xcassets */,
 				A536F42E29799622007380E3 /* ResolverRegistering.swift */,
@@ -209,7 +206,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5A1449F2974BAF6006561A8 /* Preview Assets.xcassets in Resources */,
-				A588029F29D81DD200EA9EE5 /* LaunchScreen.storyboard in Resources */,
 				A5A1449B2974BAF6006561A8 /* Assets.xcassets in Resources */,
 				A50765DA29A6446A00E4AE8A /* GoogleService-Info.plist in Resources */,
 			);
@@ -345,7 +341,6 @@
 		A5A144A32974BAF6006561A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "CounterML-iOS/CounterML_iOS.entitlements";
@@ -366,7 +361,6 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -390,7 +384,6 @@
 		A5A144A42974BAF6006561A8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "CounterML-iOS/CounterML_iOS.entitlements";
@@ -411,7 +404,6 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

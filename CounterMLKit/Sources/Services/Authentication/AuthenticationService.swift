@@ -1,15 +1,19 @@
 //
 //  AuthenticationService.swift
-//  
+//
 //
 //  Created by Daniil Shmoylove on 28.02.2023.
 //
 
-import FirebaseCore
-import FirebaseAuth
-import GoogleSignIn
-import SharedModels
 import Resolver
+import FirebaseCore
+import SharedModels
+import Core
+import GoogleSignIn
+
+#if canImport(FirebaseAuth)
+import FirebaseAuth
+#endif
 
 //MARK: - AuthenticationService protocol
 
@@ -53,12 +57,18 @@ extension AuthenticationServiceImpl: AuthenticationService {
     /// - Tag: SignInWithGoogle
     @MainActor
     public func signInWithGoogle() async throws {
+#if os(iOS)
         let scenes = UIApplication.shared.connectedScenes
         
         guard
             let windowScene = scenes.first as? UIWindowScene,
             let viewController = windowScene.windows.first?.rootViewController
         else { return }
+#else
+        guard
+            let keyWindow = NSApplication.shared.keyWindow
+        else { return }
+#endif
         
         guard
             let clientID = FirebaseApp.app()?.options.clientID
@@ -73,9 +83,15 @@ extension AuthenticationServiceImpl: AuthenticationService {
             
             /// Starts sign in flow
             
+#if os(iOS)
             let result = try await GIDSignIn.sharedInstance.signIn(
                 withPresenting: viewController
             )
+#else
+            let result = try await GIDSignIn.sharedInstance.signIn(
+                withPresenting: keyWindow
+            )
+#endif
             
             guard
                 let idToken = result.user.idToken?.tokenString
@@ -89,6 +105,9 @@ extension AuthenticationServiceImpl: AuthenticationService {
             )
             
             self.credential = credential
+            
+            /// authenticate
+            
             try await self.authenticate()
         } catch {
             throw error
@@ -107,6 +126,7 @@ extension AuthenticationServiceImpl: AuthenticationService {
                     withEmail: signCredential.email,
                     password: signCredential.password
                 )
+            
             try await self.authenticate()
         } catch {
             throw error
@@ -138,7 +158,7 @@ extension AuthenticationServiceImpl: AuthenticationService {
     //MARK: - Sign up
     
     /// Registers a new user.
-    /// 
+    ///
     /// > This method implements the work of ``KeychainService``.
     /// > When a user creates an account, his data is stored in `Keychain`.
     ///
@@ -150,6 +170,7 @@ extension AuthenticationServiceImpl: AuthenticationService {
                     withEmail: signCredential.email,
                     password: signCredential.password
                 )
+            
             self.credential = result.credential
             
             try self.keychainService.save(signCredential)
