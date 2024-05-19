@@ -80,5 +80,9 @@ extension Resolver: ResolverRegistering {
         register { KeychainServiceImpl() }
             .implements(KeychainService.self)
             .scope(.unique)
+        
+        register { FirebaseAppAnalyticsRepository() }
+            .implements(AppAnalyticsProvider.self)
+            .scope(.application)
     }
 }

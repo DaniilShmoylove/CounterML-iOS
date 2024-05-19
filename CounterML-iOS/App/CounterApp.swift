@@ -27,6 +27,12 @@ struct CounterApp: App {
                 .onOpenURL { url in
                     GIDSignIn.sharedInstance.handle(url)
                 }
+            
+            //MARK: Analytics
+            
+                .onAppear {
+                    AppAnalytics.log(.LAUNCH_APP)
+                }
         }
         
 #if os(iOS)
