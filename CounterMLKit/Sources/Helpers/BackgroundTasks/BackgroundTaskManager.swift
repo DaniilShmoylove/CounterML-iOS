@@ -8,6 +8,7 @@
 import BackgroundTasks
 import Resolver
 import Services
+import Core
 
 //MARK: - BGManager typealias
 
@@ -23,7 +24,7 @@ final public class BackgroundTaskManager {
     
     //MARK: - Identifier
     
-    public static var identifier: String = "com.DaniilShmoylove.CounterML-iOS.CLASSIFICATION_DATA_DOWNLOAD"
+    public static var identifier: String = AppKeys.Identifier.bgTaskManager
     
     //MARK: - StorageService
     
@@ -54,6 +55,9 @@ final public class BackgroundTaskManager {
     //MARK: - ScheduleAppRefresh
     
     public static func scheduleAppRefresh() {
+#if os(macOS)
+        
+#else
         let request = BGProcessingTaskRequest(
             identifier: Self.identifier
         )
@@ -62,5 +66,6 @@ final public class BackgroundTaskManager {
         
         request.earliestBeginDate = Date(timeIntervalSinceNow: 60 * 60)
         try? BGTaskScheduler.shared.submit(request)
+#endif
     }
 }

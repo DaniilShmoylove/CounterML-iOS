@@ -18,12 +18,12 @@ public struct AuthenticationView: View {
             alignment: .center,
             spacing: 18
         ) {
-            Image("logo_art")
-                .resizable()
-                .scaledToFill()
-                .bouncedAppearance(0.3)
-                .pulsate(scale: (1.075, 0.925), duration: 2.75)
-                .padding()
+//            Image("logo_art")
+//                .resizable()
+//                .scaledToFill()
+//                .bouncedAppearance(0.3)
+//                .pulsate(scale: (1.075, 0.925), duration: 2.75)
+//                .padding()
             
             Text("\nFocus on\nyour nutrition.")
                 .font(.system(size: 36, weight: .black, design: .rounded))

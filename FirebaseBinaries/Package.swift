@@ -39,11 +39,6 @@ let package = Package(
                 "Libuv-gRPC",
                 
                 "FirebaseAuth",
-                "GTMSessionFetcher",
-                
-                "AppAuth",
-                "GoogleSignIn",
-                "GTMAppAuth",
             ])
     ],
     targets: [
@@ -73,10 +68,5 @@ let package = Package(
         .binaryTarget(name: "Libuv-gRPC", path: "Frameworks/FirebaseFirestore/Libuv-gRPC.xcframework"),
         
         .binaryTarget(name: "FirebaseAuth", path: "Frameworks/FirebaseAuth/FirebaseAuth.xcframework"),
-        .binaryTarget(name: "GTMSessionFetcher", path: "Frameworks/FirebaseAuth/GTMSessionFetcher.xcframework"),
-        
-        .binaryTarget(name: "AppAuth", path: "Frameworks/GoogleSignIn/AppAuth.xcframework"),
-        .binaryTarget(name: "GoogleSignIn", path: "Frameworks/GoogleSignIn/GoogleSignIn.xcframework"),
-        .binaryTarget(name: "GTMAppAuth", path: "Frameworks/GoogleSignIn/GTMAppAuth.xcframework")
     ]
 )
