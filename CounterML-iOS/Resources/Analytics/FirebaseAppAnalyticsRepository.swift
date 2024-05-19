@@ -14,7 +14,11 @@ final class FirebaseAppAnalyticsRepository: AppAnalyticsProvider {
         Analytics
             .logEvent(
                 "\(String(describing: event).lowercased())",
-                parameters: [:]
+                parameters: [
+                    AnalyticsParameterItemID: "id-\(event.rawValue)",
+                    AnalyticsParameterItemName: event.rawValue,
+                    AnalyticsParameterContentType: "cont",
+                ]
             )
     }
 }

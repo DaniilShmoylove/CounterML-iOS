@@ -10,7 +10,7 @@ import os
 
 //MARK: - AppAnalyticsProvider protocol
 
-public protocol AppAnalyticsProvider {
+protocol AppAnalyticsProvider {
     func log(_ event: Event)
 }
 
@@ -32,7 +32,7 @@ final public class AppAnalytics {
         _ event: Event
     ) {
 #if DEBUG
-        Logger.debug.info("AppAnalytics: \(event.rawValue)")
+        Logger.global.info("AppAnalytics: \(event.rawValue)")
 #else
         self.appAnalytics.log(event)
 #endif

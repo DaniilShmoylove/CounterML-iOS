@@ -21,7 +21,6 @@
 		FBFB1F882BFA777300CEFA5F /* AppAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFB1F872BFA777300CEFA5F /* AppAnalytics.swift */; };
 		FBFB1F8B2BFA77C500CEFA5F /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFB1F8A2BFA77C500CEFA5F /* Event.swift */; };
 		FBFB1F8D2BFA7BAC00CEFA5F /* FirebaseAppAnalyticsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFB1F8C2BFA7BAC00CEFA5F /* FirebaseAppAnalyticsRepository.swift */; };
-		FBFB1F902BFA7EB700CEFA5F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFB1F8F2BFA7EB700CEFA5F /* Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -55,7 +54,6 @@
 		FBFB1F872BFA777300CEFA5F /* AppAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAnalytics.swift; sourceTree = "<group>"; };
 		FBFB1F8A2BFA77C500CEFA5F /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		FBFB1F8C2BFA7BAC00CEFA5F /* FirebaseAppAnalyticsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAppAnalyticsRepository.swift; sourceTree = "<group>"; };
-		FBFB1F8F2BFA7EB700CEFA5F /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +82,6 @@
 		A536F4312979EC18007380E3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FBFB1F8E2BFA7EAC00CEFA5F /* Logger */,
 				FBFB1F892BFA77B300CEFA5F /* Analytics */,
 				A50765D929A6446A00E4AE8A /* GoogleService-Info.plist */,
 				A5A1449A2974BAF6006561A8 /* Assets.xcassets */,
@@ -158,14 +155,6 @@
 				FBFB1F8C2BFA7BAC00CEFA5F /* FirebaseAppAnalyticsRepository.swift */,
 			);
 			path = Analytics;
-			sourceTree = "<group>";
-		};
-		FBFB1F8E2BFA7EAC00CEFA5F /* Logger */ = {
-			isa = PBXGroup;
-			children = (
-				FBFB1F8F2BFA7EB700CEFA5F /* Logger.swift */,
-			);
-			path = Logger;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,7 +239,6 @@
 				A536F42F29799622007380E3 /* ResolverRegistering.swift in Sources */,
 				A5A144972974BAF4006561A8 /* CounterApp.swift in Sources */,
 				A53957E729B1E47100C273A8 /* AppView.swift in Sources */,
-				FBFB1F902BFA7EB700CEFA5F /* Logger.swift in Sources */,
 				FBFB1F8D2BFA7BAC00CEFA5F /* FirebaseAppAnalyticsRepository.swift in Sources */,
 				FBFB1F882BFA777300CEFA5F /* AppAnalytics.swift in Sources */,
 				FBFB1F8B2BFA77C500CEFA5F /* Event.swift in Sources */,

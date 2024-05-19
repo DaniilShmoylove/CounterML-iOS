@@ -31,8 +31,16 @@ public extension Logger {
         category: "statistics"
     )
     
+    /// All logs related to tracking and analytics.
+    static let authentication = Logger(
+        subsystem: subsystem,
+        category: "authentication"
+    )
+    
+    //TODO: rename debug
+    
     /// All debug logs.
-    static let debug = Logger(
+    static let global = Logger(
         subsystem: subsystem,
         category: "debug"
     )
