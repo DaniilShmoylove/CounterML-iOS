@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  CapturePhotoButtonStyle.swift
 //  
 //
 //  Created by Daniil Shmoylove on 23.01.2023.
