@@ -7,6 +7,7 @@
 
 import Resolver
 import Services
+import Core
 
 //MARK: - ResolverRegistering
 
@@ -80,5 +81,9 @@ extension Resolver: ResolverRegistering {
         register { KeychainServiceImpl() }
             .implements(KeychainService.self)
             .scope(.unique)
+        
+        register { FirebaseAppAnalyticsRepository() }
+            .implements(AppAnalyticsProvider.self)
+            .scope(.application)
     }
 }

@@ -10,6 +10,7 @@ import CounterMLKit
 import Helpers
 import FirebaseCore
 import GoogleSignIn
+import Core
 
 @main
 struct CounterApp: App {
@@ -26,6 +27,12 @@ struct CounterApp: App {
             AppView()
                 .onOpenURL { url in
                     GIDSignIn.sharedInstance.handle(url)
+                }
+            
+            //MARK: Analytics
+            
+                .onAppear {
+                    AppAnalytics.log(.LAUNCH_APP)
                 }
         }
         
