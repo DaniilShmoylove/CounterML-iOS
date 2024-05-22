@@ -7,6 +7,7 @@
 
 import Foundation
 import Network
+import os
 
 //MARK: - NetworkReachability
 

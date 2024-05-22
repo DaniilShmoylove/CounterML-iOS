@@ -62,7 +62,7 @@ extension AuthenticationServiceImpl: AuthenticationService {
             let windowScene = scenes.first as? UIWindowScene,
             let viewController = windowScene.windows.first?.rootViewController
         else {
-            Logger.authentication.fault("signInWithGoogle windowScene \(windowScene), viewController \(viewController)")
+            Logger.authentication.fault("\(#function) windowScene or viewController have nil value")
             
             return
         }
@@ -70,7 +70,7 @@ extension AuthenticationServiceImpl: AuthenticationService {
         guard
             let keyWindow = NSApplication.shared.keyWindow
         else {
-            Logger.authentication.fault("signInWithGoogle keyWindow is nil")
+            Logger.authentication.fault("\(#function) keyWindow is nil")
             
             return
         }
@@ -79,7 +79,7 @@ extension AuthenticationServiceImpl: AuthenticationService {
         guard
             let clientID = FirebaseApp.app()?.options.clientID
         else {
-            Logger.authentication.fault("signInWithGoogle clientID is nil")
+            Logger.authentication.fault("\(#function) clientID is nil")
             
             return
         }
@@ -106,7 +106,7 @@ extension AuthenticationServiceImpl: AuthenticationService {
             guard
                 let idToken = result.user.idToken?.tokenString
             else {
-                Logger.authentication.fault("signInWithGoogle idToken is nil")
+                Logger.authentication.fault("\(#function) idToken is nil")
                 
                 return
             }
@@ -120,13 +120,13 @@ extension AuthenticationServiceImpl: AuthenticationService {
             
             self.credential = credential
             
-            Logger.authentication.info("signInWithGoogle credential created \(credential)")
+            Logger.authentication.info("\(#function) credential created \(credential)")
             
             /// authenticate
             
             try await self.authenticate()
         } catch {
-            Logger.authentication.error("signInWithGoogle error: \(error.localizedDescription)")
+            Logger.authentication.error("\(#function) error: \(error.localizedDescription)")
             
             throw error
         }
@@ -225,7 +225,7 @@ extension AuthenticationServiceImpl: AuthenticationService {
             
             Logger.authentication.info("User is sign out")
         } catch {
-            Logger.authentication.error("signOut error: \(error.localizedDescription)")
+            Logger.authentication.error("\(#function) error: \(error.localizedDescription)")
             
             throw error
         }

@@ -39,6 +39,10 @@ let package = Package(
                 "Libuv-gRPC",
                 
                 "FirebaseAuth",
+                
+                "FirebaseABTesting",
+                "FirebaseRemoteConfig",
+                "FirebaseRemoteConfigInterop",
             ])
     ],
     targets: [
@@ -68,5 +72,9 @@ let package = Package(
         .binaryTarget(name: "Libuv-gRPC", path: "Frameworks/FirebaseFirestore/Libuv-gRPC.xcframework"),
         
         .binaryTarget(name: "FirebaseAuth", path: "Frameworks/FirebaseAuth/FirebaseAuth.xcframework"),
+        
+        .binaryTarget(name: "FirebaseABTesting", path: "Frameworks/FirebaseRemoteConfig/FirebaseABTesting.xcframework"),
+        .binaryTarget(name: "FirebaseRemoteConfig", path: "Frameworks/FirebaseRemoteConfig/FirebaseRemoteConfig.xcframework"),
+        .binaryTarget(name: "FirebaseRemoteConfigInterop", path: "Frameworks/FirebaseRemoteConfig/FirebaseRemoteConfigInterop.xcframework"),
     ]
 )

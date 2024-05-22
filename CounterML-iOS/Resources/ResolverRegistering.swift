@@ -13,6 +13,7 @@ import Core
 
 /// Resolver is a Dependency Injection registry that registers Services for later
 /// resolution and injection into newly constructed instances.
+///
 /// - Tag: ResolverRegistering
 extension Resolver: ResolverRegistering {
     public static func registerAllServices() {
@@ -73,7 +74,7 @@ extension Resolver: ResolverRegistering {
             .scope(.application)
         
         //MARK: - KeychainService protocol
-
+        
         /// Keychain Services is a secure storage interface for macOS and iOS
         /// best used for small pieces of private data like passwords, cookies, and authentication tokens.
         ///
@@ -82,8 +83,26 @@ extension Resolver: ResolverRegistering {
             .implements(KeychainService.self)
             .scope(.unique)
         
+        //MARK: Register all oroviders
+        
+        self.registerAllProviders()
+    }
+    
+    private static func registerAllProviders() {
+        
+        //MARK: - AppAnalyticsProvider
+        
         register { FirebaseAppAnalyticsRepository() }
             .implements(AppAnalyticsProvider.self)
+            .scope(.application)
+        
+        //MARK: - RemoteConfigProvider
+        
+        /// Manages communication with Remote Config service.
+        ///
+        /// - Tag: RemoteConfigProvider
+        register { FirebaseRCRepository() }
+            .implements(RemoteConfigProvider.self)
             .scope(.application)
     }
 }

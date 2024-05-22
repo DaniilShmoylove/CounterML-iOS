@@ -15,30 +15,30 @@ import AVFoundation
 /// - Tag: CameraService
 public protocol CameraService {
     
-    // Start method
+    /// Start method
     
     func start(
         delegate: AVCapturePhotoCaptureDelegate,
         completion: @escaping (Error?) -> ()
     )
     
-    // Stop method
+    /// Stop method
     
     func stop()
     
-    // Initiates a photo capture using the specified settings.
+    /// Initiates a photo capture using the specified settings.
     
     func capturePhoto()
     
-    // Methods for monitoring progress and receiving results from a photo capture output.
+    /// Methods for monitoring progress and receiving results from a photo capture output.
     
     var delegate: AVCapturePhotoCaptureDelegate? { get }
     
-    // A Core Animation layer that displays video from a camera device.
+    /// A Core Animation layer that displays video from a camera device.
     
     var previewLayer: AVCaptureVideoPreviewLayer { get }
     
-    // Turn on the camera flashlight
+    /// Turn on the camera flashlight
     
     func toggleTorch(_ set: Bool)
 }
@@ -170,7 +170,6 @@ extension CameraServiceImpl: CameraService {
     /// Initiates a photo capture using the specified settings.
     /// - Tag: capturePhoto
     public func capturePhoto() {
-        print("Capture")
         guard let delegate else { return }
         self.output.capturePhoto(
             with: self.capturePhotoSettings,
