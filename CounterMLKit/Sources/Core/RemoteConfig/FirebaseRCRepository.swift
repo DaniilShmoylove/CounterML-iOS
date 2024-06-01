@@ -33,8 +33,6 @@ public class FirebaseRCRepository: RemoteConfigProvider {
     
     //MARK: Values
     
-    @Published private(set) var values: [String: Any]? = nil
-    
     @Published public var welcomeScreen: String? = nil
     
     /// Loads default values for Remote Config.
