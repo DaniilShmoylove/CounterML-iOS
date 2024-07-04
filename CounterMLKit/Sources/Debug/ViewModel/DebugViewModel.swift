@@ -9,6 +9,7 @@ import Foundation
 import Resolver
 import Authentication
 import Services
+import os
 
 @MainActor final class DebugViewModel: ObservableObject {
     init() { }
@@ -19,7 +20,7 @@ import Services
         do {
             try authenticationService.signOut()
         } catch {
-            
+            Logger.global.debug("\(#function) \(error.localizedDescription)")
         }
     }
 }
